@@ -1,0 +1,21 @@
+{
+	"bpm" : 190,
+	"offset" : 0,
+	"file" : "TestBeat.ogg",
+	"orders" : [
+		{
+			"time" : 0,
+			"recipes" : [
+				{
+					"time" : 0,
+					"type" : "Single"
+				}
+				{
+					"time" : 4,
+					"type" : "Pickles"
+				}
+			]
+
+		},
+	]
+}

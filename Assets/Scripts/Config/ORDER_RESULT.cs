@@ -1,0 +1,6 @@
+﻿public enum ORDER_RESULT
+{
+	FAILURE,
+	BARELY,
+	SUCCESS
+}
