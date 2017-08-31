@@ -23,6 +23,9 @@ public class SongBehavior : MonoBehaviour {
 		"and a larger negative offset plays the song earlier than its events.")]
 	public double offset;
 
+	[Header("Debug")]
+	public int startBeat = 0;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -58,7 +61,7 @@ public class SongBehavior : MonoBehaviour {
 		if (!playing)
 		{
 			playing = true;
-			player.start ();
+			player.start (engine.toSecondTime(startBeat));
 		}
 	}
 }

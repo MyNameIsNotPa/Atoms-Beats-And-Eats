@@ -65,7 +65,7 @@ public class Order
 
 	public void finish(Engine engine)
 	{
-		customer.finishOrder (engine.getNearestBeat () + 1);
+		customer.finishOrder (engine.getNearestBeat () + 1, result == ORDER_RESULT.SUCCESS);
 		endSongTime = engine.getNearestBeat () + 5;
 		finished = true;
 	}
@@ -114,7 +114,7 @@ public class Order
 						r.finish (engine);
 						if (!r.didSucceed ())
 						{
-							result = ORDER_RESULT.BARELY;
+							result = ORDER_RESULT.FAILURE;
 						}
 					}
 				}

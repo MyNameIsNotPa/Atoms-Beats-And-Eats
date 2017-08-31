@@ -10,6 +10,7 @@ public class Customer
 	private double startSongTime;
 	private double endSongTime;
 	private bool hasOrdered;
+	private bool orderResult;
 	private bool shownResult;
 
 	private Vector3 startPos = new Vector3 (-150f, -15f, 0);
@@ -26,11 +27,12 @@ public class Customer
 		shownResult = false;
 	}
 
-	public void finishOrder(double currentBeat)
+	public void finishOrder(double currentBeat, bool result)
 	{
 		startSongTime = currentBeat;
 		endSongTime = currentBeat + 4;
 		hasOrdered = true;
+		orderResult = result;
 	}
 
 	public void destroy()
@@ -61,7 +63,7 @@ public class Customer
 				if (!shownResult)
 				{
 					shownResult = true;
-					engine.showOrderResult (true);
+					engine.showOrderResult (orderResult);
 				}
 				customer.transform.localPosition = Vector3.Lerp (endPos, startPos, interval) + Vector3.up * beat; 
 			}
