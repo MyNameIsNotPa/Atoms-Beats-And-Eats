@@ -330,9 +330,39 @@ MonoBehaviour:
 
     Single, 8
 
-    Single, 12'
+    Single, 12
+
+
+    96
+
+    Single, 0
+
+
+    100
+
+    Single, 0
+
+
+    104
+
+    Single, 0
+
+
+    108
+
+    Double, 0
+
+
+    112
+
+    Single, 0
+
+    Double, 4
+
+    Single, 8'
   bpm: 190
   offset: 575
+  startBeat: 0
 --- !u!82 &275011719
 AudioSource:
   m_ObjectHideFlags: 0

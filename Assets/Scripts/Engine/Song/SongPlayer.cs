@@ -20,9 +20,10 @@ public class SongPlayer
 		source.clip = song.getClip();
 	}
 
-	public void start()
+	public void start(double startBeat)
 	{
-		source.PlayScheduled (AudioSettings.dspTime + song.toMillisecondTime(8.0));
+		source.time = (float) startBeat;
+		source.PlayScheduled (AudioSettings.dspTime + song.toMillisecondTime (8.0));
 		startTime = AudioSettings.dspTime;
 	}
 

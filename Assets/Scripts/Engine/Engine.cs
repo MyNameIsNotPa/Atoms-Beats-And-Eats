@@ -71,6 +71,7 @@ public class Engine : MonoBehaviour
 		return Input.GetKeyDown (KeyCode.Escape);
 	}
 
+
 	// Visual updates
 	//============================================================================================
 	public void showHitResult(HIT_RESULT result)
@@ -117,6 +118,7 @@ public class Engine : MonoBehaviour
 			speechBubble.SetActive (false);
 		}
 	}
+
 
 	// Getters and setters
 	//============================================================================================
