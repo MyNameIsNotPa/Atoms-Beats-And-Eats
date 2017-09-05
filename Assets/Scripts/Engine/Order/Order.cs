@@ -60,12 +60,12 @@ public class Order
 	public void start(Engine engine)
 	{
 		started = true;
-		customer = new Customer (engine, startSongTime - 4f, startSongTime);
+		customer = new Customer (startSongTime - 4f, startSongTime);
 	}
 
 	public void finish(Engine engine)
 	{
-		customer.finishOrder (engine.getNearestBeat () + 1, result == ORDER_RESULT.SUCCESS);
+		customer.finishOrder (engine.getNearestBeat () + 1, result);
 		endSongTime = engine.getNearestBeat () + 5;
 		finished = true;
 	}
@@ -84,7 +84,7 @@ public class Order
 		if (!shown && engine.getSongTime () >= startSongTime)
 		{
 			shown = true;
-			engine.showStartOrder ();
+			engine.showOrderStart ();
 		}
 
 		if (done)

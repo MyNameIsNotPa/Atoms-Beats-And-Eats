@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4e4fdd58be1226d47807ab5514acf04e
+timeCreated: 1504566452
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GRAFIKA TYPE.1
+  fontNames:
+  - GRAFIKA TYPE.1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

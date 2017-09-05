@@ -10,16 +10,16 @@ public class Customer
 	private double startSongTime;
 	private double endSongTime;
 	private bool hasOrdered;
-	private bool orderResult;
+	private ORDER_RESULT orderResult;
 	private bool shownResult;
 
 	private Vector3 startPos = new Vector3 (-150f, -15f, 0);
 	private Vector3 endPos = new Vector3 (-25f, -15f, 0);
 
-	public Customer(Engine engine, double startSongTime, double endSongTime)
+	public Customer(double startSongTime, double endSongTime)
 	{
 		prefab = Resources.Load<GameObject> ("Prefabs/Customer");
-		customer = engine.addCustomer (prefab);
+		customer = CustomerManager.addCustomer (prefab);
 		customer.transform.localPosition = startPos;
 		hasOrdered = false;
 		this.startSongTime = startSongTime;
@@ -27,7 +27,7 @@ public class Customer
 		shownResult = false;
 	}
 
-	public void finishOrder(double currentBeat, bool result)
+	public void finishOrder(double currentBeat, ORDER_RESULT result)
 	{
 		startSongTime = currentBeat;
 		endSongTime = currentBeat + 4;
