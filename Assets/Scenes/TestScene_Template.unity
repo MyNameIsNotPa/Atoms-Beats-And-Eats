@@ -222,7 +222,7 @@ MonoBehaviour:
 
     Single, 8'
   bpm: 190
-  offset: 550
+  offset: 425
   startBeat: 0
 --- !u!82 &275011719
 AudioSource:
