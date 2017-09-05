@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d0d9004e4a176024f852e17f98804ede
+timeCreated: 1504566557
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: The Bold Font
+  fontNames:
+  - The Bold Font
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

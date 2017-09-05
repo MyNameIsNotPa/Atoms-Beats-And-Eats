@@ -69,7 +69,7 @@ public class SongPlayer
 
 	public void update(bool keyDown, Engine engine)
 	{
-		engine.DEBUG_updateBeatVisuals ();
+		engine.updateBeat ();
 
 		// Update hits
 		int toRemove = 0;

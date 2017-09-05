@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 
-public class SongBehavior : MonoBehaviour {
+public class SongBehavior : MonoBehaviour
+{
 
 	private bool playing = false;
 	private Song song;
 	private SongPlayer player;
 	private Engine engine;
-	private bool paused;
 
 	public string songName;
 
@@ -18,9 +18,11 @@ public class SongBehavior : MonoBehaviour {
 
 	public double bpm;
 
-	[Tooltip("Offset in milliseconds for the audio track." +
-		"A larger positive offset plays the song later than its events," +
-		"and a larger negative offset plays the song earlier than its events.")]
+	[Tooltip("Offset in milliseconds for the audio track. " +
+		"A larger positive offset plays the song later than its events, " +
+		"and a larger negative offset plays the song earlier than its events. " +
+		"For example, if the player character is bouncing too late, lower the offset. " +
+		"The song will play earlier, so the character will bounce earlier in the song.")]
 	public double offset;
 
 	[Header("Debug")]
@@ -29,25 +31,19 @@ public class SongBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		GetComponent<AudioSource> ().clip = Resources.Load<AudioClip> ("Music/" + songName);
 		song = new Song(bpm, offset / 1000f, map, GetComponent<AudioSource>().clip);
 		player = new SongPlayer (song, GetComponent<AudioSource>());
 
-		engine = GetComponentInParent<Engine> ();
+		engine = GameObject.FindWithTag("Engine").GetComponent<Engine> ();
 		engine.setPlayer (player);
-
-		paused = false;
 	}
 
 	void Update()
 	{
-		if (engine.isPauseKeyDown ())
-		{
-			paused = !paused;
-		}
-
 		if (playing)
 		{
-			if (paused)
+			if (Engine.gamePaused)
 			{
 				player.pause ();
 			}

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e54e42dc6f936574b9206bf874580df1
+timeCreated: 1504566535
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: flottflott
+  fontNames:
+  - flottflott
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

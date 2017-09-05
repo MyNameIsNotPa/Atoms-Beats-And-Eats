@@ -2,60 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 // Provides an interface for Events to use to display things on the screen
+
+[System.Serializable]
+public class BeatUpdateEvent : UnityEvent<float>{};
+[System.Serializable]
+public class BoolEvent : UnityEvent<bool>{};
+[System.Serializable]
+public class BeatHitEvent : UnityEvent<HIT_RESULT>{};
+
+[System.Serializable]
+public class RecipeStartEvent : UnityEvent<Sprite>{};
+[System.Serializable]
+public class RecipeEndEvent : UnityEvent<bool>{};
+
+[System.Serializable]
+public class OrderStartEvent : UnityEvent{};
+[System.Serializable]
+public class OrderEndEvent : UnityEvent<ORDER_RESULT>{};
+
+[System.Serializable]
+public class ShowTextEvent : UnityEvent<string>{};
 
 public class Engine : MonoBehaviour
 {
 	private SongPlayer player;
-	private SpriteRenderer recipe;
 
-	private Sprite success;
-	private Sprite failure;
+	[Header("Events")]
+	[Space]
+	[Header("Recipe Start")]
+	public RecipeStartEvent recipeStart;
+	[Header("Recipe End")]
+	public RecipeEndEvent recipeEnd;
+	[Header("Order Start")]
+	public OrderStartEvent orderStart;
+	[Header("Order End")]
+	public OrderEndEvent orderEnd;
+	[Header("Hit")]
+	public BeatHitEvent hit;
+	[Header("Beat Update")]
+	public BeatUpdateEvent beatUpdate;
+	[Header("Text")]
+	public ShowTextEvent textEvent;
 
-	private Animator popper;
-	private Animator playerAnimator;
+	public static bool gamePaused = false;
 
-	private int speechHideStack;
-
-	private float lastMeasure = Mathf.Infinity;
-
-	[Header("Debugger Visuals")]
-	public Slider beat;
-	public Slider measure;
-
-	[Header("Game Visuals")]
-	public Text textbox;
-	public GameObject speechBubble;
-	public Transform customers;
-	public GameObject playerObject;
-
-	[Header("Sound")]
-	public AudioSource recipeSuccess;
-	public AudioSource orderSuccess;
-
-	// Initializer
-	public void Start()
+	public void Update ()
 	{
-		speechHideStack = 0;
-		recipe = speechBubble.transform.Find("Image").GetComponent<SpriteRenderer> ();
-		popper = speechBubble.GetComponent<Animator> ();
-		playerAnimator = playerObject.GetComponent<Animator> ();
-		success = Resources.Load<Sprite> ("RecipeIcons/Success");
-		failure = Resources.Load<Sprite> ("RecipeIcons/Failure");
+		if (isPauseKeyDown ())
+		{
+			gamePaused = !gamePaused;
+		}
 	}
 
-
-	// Update the beat visuals for debugging
-	public void DEBUG_updateBeatVisuals()
+	// Update the beat
+	public void updateBeat()
 	{
-		beat.value = (float) player.getSongTime () - Mathf.Floor((float) player.getSongTime());
-		measure.value = Mathf.Floor ((float)player.getSongTime ()) % 4;
-		if (player.getSongTime () >= 0 && measure.value != lastMeasure && measure.value % 2 == 0)
-		{
-			lastMeasure = measure.value;
-			playerAnimator.SetTrigger ("Bounce");
-		}
+		beatUpdate.Invoke ((float) player.getSongTime ());
 	}
 
 
@@ -76,47 +81,32 @@ public class Engine : MonoBehaviour
 	//============================================================================================
 	public void showHitResult(HIT_RESULT result)
 	{
-		Debug.Log (result);
+		hit.Invoke (result);
 	}
 
 	public void displayText(string text)
 	{
-		textbox.text = text;
+		textEvent.Invoke(text);
 	}
 
 	public void showRecipeStart(Sprite image)
 	{
-		recipe.sprite = image;
-		popper.SetTrigger ("Pop");
+		recipeStart.Invoke (image);
 	}
 
-	public void showStartOrder()
+	public void showOrderStart()
 	{
-		speechBubble.SetActive (true);
-		speechHideStack++;
+		orderStart.Invoke ();
 	}
 
 	public void showRecipeResult(bool didSucceed)
 	{
-		recipe.sprite = didSucceed ? success : failure;
-		if (didSucceed)
-		{
-			recipeSuccess.Play ();
-		}
-		popper.SetTrigger ("Pop");
+		recipeEnd.Invoke (didSucceed);
 	}
 
-	public void showOrderResult(bool didSucceed)
+	public void showOrderResult(ORDER_RESULT result)
 	{
-		speechHideStack--;
-		if (didSucceed)
-		{
-			orderSuccess.Play ();
-		}
-		if (speechHideStack == 0)
-		{
-			speechBubble.SetActive (false);
-		}
+		orderEnd.Invoke (result);
 	}
 
 
@@ -150,10 +140,5 @@ public class Engine : MonoBehaviour
 	public void addHit(HIT_RESULT result)
 	{
 		player.addResult (result);
-	}
-
-	public GameObject addCustomer(GameObject customer)
-	{
-		return GameObject.Instantiate (customer, customers);
 	}
 }
