@@ -25,12 +25,14 @@ public class SpeechBubble : MonoBehaviour
 		failure = Resources.Load<Sprite> ("RecipeIcons/Failure");
 	}
 
+	// Show the speech bubble when an order starts
 	public void orderStart()
 	{
 		speechHideStack++;
 		gameObject.SetActive (true);
 	}
 
+	// Hide the speech bubble when an order ends
 	public void orderEnd(ORDER_RESULT result)
 	{
 		speechHideStack--;
@@ -43,17 +45,21 @@ public class SpeechBubble : MonoBehaviour
 
 	public void recipeStart(Sprite image)
 	{
+		// Show the recipe image
 		recipe.sprite = image;
+		// Animate the speech bubble
 		animator.SetTrigger ("Pop");
 	}
 
 	public void recipeEnd(bool didSucceed)
 	{
+		// Show the success or failure image in the speech bubble
 		recipe.sprite = didSucceed ? success : failure;
 		if (didSucceed)
 		{
 			audioSource.Play ();
 		}
+		// Animate the speech bubble
 		animator.SetTrigger ("Pop");
 	}
 }

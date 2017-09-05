@@ -28,7 +28,6 @@ public class SongBehavior : MonoBehaviour
 	[Header("Debug")]
 	public int startBeat = 0;
 
-	// Use this for initialization
 	void Start ()
 	{
 		GetComponent<AudioSource> ().clip = Resources.Load<AudioClip> ("Music/" + songName);

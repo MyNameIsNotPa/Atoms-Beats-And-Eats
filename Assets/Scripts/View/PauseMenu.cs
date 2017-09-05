@@ -34,7 +34,6 @@ public class PauseMenu : MonoBehaviour
 		button1Animator = button1.GetComponent<Animator> ();
 		button2Animator = button2.GetComponent<Animator> ();
 		button3Animator = button3.GetComponent<Animator> ();
-
 	}
 
 	void Update ()
@@ -45,16 +44,19 @@ public class PauseMenu : MonoBehaviour
 		button3Animator.SetInteger ("Selected", currSelected);
 	}
 
+	// Resume button was clicked
 	public void button1Click()
 	{
 		Engine.gamePaused = false;
 	}
 
+	// Restart button was clicked
 	public void button2Click()
 	{
 
 	}
 
+	// Quit button was clicked
 	public void button3Click()
 	{
 

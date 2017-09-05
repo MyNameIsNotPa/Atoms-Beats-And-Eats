@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-// Provides an interface for Events to use to display things on the screen
+// Provides an interface for the backend to do things in the frontend
+// Use the events in this class for visuals and game stuff
+// Also be aware of the variable Engine.gamePaused, which will globally keep track of the game being paused
 
 [System.Serializable]
 public class BeatUpdateEvent : UnityEvent<float>{};
@@ -47,6 +49,8 @@ public class Engine : MonoBehaviour
 	[Header("Text")]
 	public ShowTextEvent textEvent;
 
+	// Game pausing
+	//============================================================================================
 	public static bool gamePaused = false;
 
 	public void Update ()
@@ -55,16 +59,14 @@ public class Engine : MonoBehaviour
 		{
 			gamePaused = !gamePaused;
 		}
+
+		// Lock and hide mouse cursor if the game is running
+		Cursor.visible = gamePaused;
+		Cursor.lockState = gamePaused ? CursorLockMode.None : CursorLockMode.Locked;
 	}
 
-	// Update the beat
-	public void updateBeat()
-	{
-		beatUpdate.Invoke ((float) player.getSongTime ());
-	}
 
-
-	// Querying state of the engine
+	// Input state
 	//============================================================================================
 	public bool isKeyDown()
 	{
@@ -77,7 +79,7 @@ public class Engine : MonoBehaviour
 	}
 
 
-	// Visual updates
+	// Event invokers
 	//============================================================================================
 	public void showHitResult(HIT_RESULT result)
 	{
@@ -109,8 +111,13 @@ public class Engine : MonoBehaviour
 		orderEnd.Invoke (result);
 	}
 
+	public void updateBeat()
+	{
+		beatUpdate.Invoke ((float) player.getSongTime ());
+	}
 
-	// Getters and setters
+
+	// Getters and setters (Used internally by the engine. Don't use.)
 	//============================================================================================
 	public void setPlayer(SongPlayer player)
 	{
@@ -135,10 +142,5 @@ public class Engine : MonoBehaviour
 	public double toSecondTime(double time)
 	{
 		return player.getSong ().toMillisecondTime (time);
-	}
-
-	public void addHit(HIT_RESULT result)
-	{
-		player.addResult (result);
 	}
 }

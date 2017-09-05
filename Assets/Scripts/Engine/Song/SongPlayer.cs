@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SongPlayer
 {
-
 	private Song song;
 
 	private double startTime;
