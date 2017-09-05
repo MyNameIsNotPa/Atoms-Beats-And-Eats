@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 		lastMeasure = -1;
 	}
 
+	// Animate the player to the beat
 	public void updateBeat(float songTime)
 	{
 		int measure = (int) Mathf.Floor (songTime);
