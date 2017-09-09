@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Start ()
 	{
-		currSelected = 0;;
+		currSelected = 0;
 		animator = GetComponent<Animator> ();
 		button1 = transform.Find ("Controls/Resume").gameObject;
 		button2 = transform.Find ("Controls/Restart").gameObject;
@@ -61,7 +61,7 @@ public class PauseMenu : MonoBehaviour
 	// Quit button was clicked
 	public void button3Click()
 	{
-		Application.Quit ();
+		
 	}
 
 	public void button1Enter()
