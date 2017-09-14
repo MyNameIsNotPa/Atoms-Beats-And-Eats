@@ -33,6 +33,9 @@ public class SongEndEvent : UnityEvent{};
 [System.Serializable]
 public class GameStartEvent : UnityEvent{};
 
+[System.Serializable]
+public class PlaySoundEvent : UnityEvent<AudioClip, double>{};
+
 public class Engine : MonoBehaviour
 {
 	private SongPlayer player;
@@ -55,8 +58,8 @@ public class Engine : MonoBehaviour
 	public SongEndEvent songEnd;
 	[Header("Game Start")]
 	public GameStartEvent gameStart;
-	[Header("Text")]
-	public ShowTextEvent textEvent;
+	[Header("Play Sound")]
+	public PlaySoundEvent soundPlay;
 
 	// Game pausing
 	//============================================================================================
@@ -95,11 +98,6 @@ public class Engine : MonoBehaviour
 		hit.Invoke (result);
 	}
 
-	public void displayText(string text)
-	{
-		textEvent.Invoke(text);
-	}
-
 	public void showRecipeStart(Sprite image)
 	{
 		recipeStart.Invoke (image);
@@ -133,6 +131,11 @@ public class Engine : MonoBehaviour
 	public void startGame()
 	{
 		gameStart.Invoke ();
+	}
+
+	public void playSound(AudioClip clip, double time)
+	{
+		soundPlay.Invoke (clip, time);
 	}
 
 

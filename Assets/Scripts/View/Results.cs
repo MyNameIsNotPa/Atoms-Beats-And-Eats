@@ -20,7 +20,6 @@ public class Results : MonoBehaviour {
 	private RectTransform fullBar;
 
 	void Start () {
-		main = transform.Find ("Main").gameObject;
 		perfect = transform.Find ("Main/Scores/Hits/Perfect/Text").GetComponent<Text> ();
 		barely = transform.Find ("Main/Scores/Hits/Barely/Text").GetComponent<Text> ();
 		miss = transform.Find ("Main/Scores/Hits/Miss/Text").GetComponent<Text> ();
