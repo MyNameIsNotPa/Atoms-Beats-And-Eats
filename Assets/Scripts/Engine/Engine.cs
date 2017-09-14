@@ -28,6 +28,11 @@ public class OrderEndEvent : UnityEvent<ORDER_RESULT>{};
 [System.Serializable]
 public class ShowTextEvent : UnityEvent<string>{};
 
+[System.Serializable]
+public class SongEndEvent : UnityEvent{};
+[System.Serializable]
+public class GameStartEvent : UnityEvent{};
+
 public class Engine : MonoBehaviour
 {
 	private SongPlayer player;
@@ -46,6 +51,10 @@ public class Engine : MonoBehaviour
 	public BeatHitEvent hit;
 	[Header("Beat Update")]
 	public BeatUpdateEvent beatUpdate;
+	[Header("Song End")]
+	public SongEndEvent songEnd;
+	[Header("Game Start")]
+	public GameStartEvent gameStart;
 	[Header("Text")]
 	public ShowTextEvent textEvent;
 
@@ -114,6 +123,16 @@ public class Engine : MonoBehaviour
 	public void updateBeat()
 	{
 		beatUpdate.Invoke ((float) player.getSongTime ());
+	}
+
+	public void finishSong()
+	{
+		songEnd.Invoke ();
+	}
+
+	public void startGame()
+	{
+		gameStart.Invoke ();
 	}
 
 

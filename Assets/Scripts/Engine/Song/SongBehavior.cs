@@ -7,6 +7,7 @@ public class SongBehavior : MonoBehaviour
 {
 
 	private bool playing = false;
+	private bool ended = false;
 	private Song song;
 	private SongPlayer player;
 	private Engine engine;
@@ -35,11 +36,24 @@ public class SongBehavior : MonoBehaviour
 		player = new SongPlayer (song, GetComponent<AudioSource>());
 
 		engine = GameObject.FindWithTag("Engine").GetComponent<Engine> ();
+		engine.songEnd.AddListener (onSongEnd);
 		engine.setPlayer (player);
+		engine.startGame ();
+	}
+
+	public void onSongEnd()
+	{
+		player.stop ();
+		ended = true;
 	}
 
 	void Update()
 	{
+		if (ended)
+		{
+			return;
+		}
+
 		if (playing)
 		{
 			if (Engine.gamePaused)
@@ -49,7 +63,7 @@ public class SongBehavior : MonoBehaviour
 			else
 			{
 				player.unPause ();
-				player.update (Input.GetMouseButtonDown (0), engine);
+				player.update (engine);
 			}
 		}
 
