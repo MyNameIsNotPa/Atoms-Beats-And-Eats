@@ -7,7 +7,7 @@ public class SoundEvent : Event
 
 	public SoundEvent(double songTime, AudioClip clip)
 	{
-		startSongTime = songTime - 0.5;
+		startSongTime = songTime - 0.4;
 		this.hitSongTime = songTime;
 		this.clip = clip;
 	}
