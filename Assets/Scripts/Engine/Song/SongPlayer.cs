@@ -22,8 +22,13 @@ public class SongPlayer
 	public void start(double startBeat)
 	{
 		source.time = (float) startBeat;
-		source.PlayScheduled (AudioSettings.dspTime + song.toMillisecondTime (8.0));
+		source.PlayScheduled (AudioSettings.dspTime + 7f);
 		startTime = AudioSettings.dspTime;
+	}
+
+	public void stop()
+	{
+		source.Stop ();
 	}
 
 	public void pause()
@@ -66,8 +71,14 @@ public class SongPlayer
 		return (source.time == 0 ? -(((startTime + song.toMillisecondTime(8.0)) - AudioSettings.dspTime)) : source.time) - song.getOffset();
 	}
 
-	public void update(bool keyDown, Engine engine)
+	public void update(Engine engine)
 	{
+		if (engine.getSongTime () > song.getEndBeat ())
+		{
+			engine.finishSong ();
+			return;
+		}
+
 		engine.updateBeat ();
 
 		// Update hits

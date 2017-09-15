@@ -9,8 +9,8 @@ public class DoubleRecipe : Recipe
 	public DoubleRecipe(double startSongTime) : base(startSongTime)
 	{
 		image = Resources.Load<Sprite> ("RecipeIcons/Double");
-		events.Add (new TextEvent (startSongTime, "Double!"));
-		events.Add (new TextEvent (startSongTime + 1, ""));
+		events.Add (new SoundEvent(startSongTime));
+		events.Add (new SoundEvent(startSongTime + 1));
 		events.Add (new HitEvent (startSongTime + 2));
 		events.Add (new HitEvent (startSongTime + 3));
 	}
