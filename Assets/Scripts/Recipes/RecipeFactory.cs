@@ -10,6 +10,8 @@ public class RecipeFactory
 			return new SingleRecipe (startTime);
 		case "Double":
 			return new DoubleRecipe (startTime);
+		case "Lettuce":
+			return new LettuceRecipe (startTime);
 		default:
 			return null;
 		}
