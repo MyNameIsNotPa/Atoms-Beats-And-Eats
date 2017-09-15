@@ -12,7 +12,9 @@ public class RecipeFactory
 			return new DoubleRecipe (startTime);
 		case "Lettuce":
 			return new LettuceRecipe (startTime);
-		default:
+    case "Onions":
+        return new OnionsRecipe (startTime);
+    default:
 			return null;
 		}
 	}
