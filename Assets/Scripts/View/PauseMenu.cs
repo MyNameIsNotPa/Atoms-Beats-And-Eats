@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -21,15 +22,15 @@ public class PauseMenu : MonoBehaviour
 
 	void Start ()
 	{
-		currSelected = 1;
+		currSelected = 0;
 		animator = GetComponent<Animator> ();
 		button1 = transform.Find ("Controls/Resume").gameObject;
 		button2 = transform.Find ("Controls/Restart").gameObject;
 		button3 = transform.Find ("Controls/Quit").gameObject;
 
 		button1.GetComponent<Button> ().onClick.AddListener(button1Click);
-		button1.GetComponent<Button> ().onClick.AddListener(button2Click);
-		button1.GetComponent<Button> ().onClick.AddListener(button3Click);
+		button2.GetComponent<Button> ().onClick.AddListener(button2Click);
+		button3.GetComponent<Button> ().onClick.AddListener(button3Click);
 
 		button1Animator = button1.GetComponent<Animator> ();
 		button2Animator = button2.GetComponent<Animator> ();
@@ -53,13 +54,14 @@ public class PauseMenu : MonoBehaviour
 	// Restart button was clicked
 	public void button2Click()
 	{
-
+		Engine.gamePaused = false;
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
 	// Quit button was clicked
 	public void button3Click()
 	{
-
+		
 	}
 
 	public void button1Enter()

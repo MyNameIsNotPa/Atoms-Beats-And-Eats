@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleRecipe : Recipe
+public class LettuceRecipe : Recipe
 {
 	//protected List<Event> events;
 
-	public SingleRecipe(double startSongTime) : base(startSongTime)
+	public LettuceRecipe(double startSongTime) : base(startSongTime)
 	{
-		image = Resources.Load<Sprite> ("RecipeIcons/Single");
+		image = Resources.Load<Sprite> ("RecipeIcons/Lettuce");
 		events.Add (new SoundEvent(startSongTime));
 		events.Add (new HitEvent (startSongTime + 2));
+		events.Add (new HitEvent (startSongTime + 3.5));
 	}
 }

@@ -16,6 +16,9 @@ public class Song
 	// Precalculated beats per second
 	private double delay;
 
+	// Ending beat of the song
+	private double end;
+
 	private List<Order> orders;
 
 	private AudioClip clip;
@@ -37,6 +40,11 @@ public class Song
 	public double getOffset()
 	{
 		return offset;
+	}
+
+	public double getEndBeat()
+	{
+		return end;
 	}
 
 	public List<Order> getOrders()
@@ -82,6 +90,12 @@ public class Song
 					recipes = new List<Recipe> ();
 				}
 				orderOffset = Mathf.Infinity;
+				continue;
+			}
+
+			if (line.Equals ("END"))
+			{
+				end = orderOffset;
 				continue;
 			}
 
