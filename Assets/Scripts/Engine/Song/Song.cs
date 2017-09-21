@@ -19,6 +19,9 @@ public class Song
 	// Ending beat of the song
 	private double end;
 
+	// Time to repeat song
+	private double repeat;
+
 	private List<Order> orders;
 
 	private AudioClip clip;
@@ -47,6 +50,11 @@ public class Song
 		return end;
 	}
 
+	public double getRepeatBeat()
+	{
+		return repeat;
+	}
+
 	public List<Order> getOrders()
 	{
 		return orders;
@@ -57,9 +65,19 @@ public class Song
 		return clip;
 	}
 
+	public void clearOrders()
+	{
+		orders.Clear ();
+	}
+
 	public void removeOrders(int range)
 	{
 		orders.RemoveRange (0, range);
+	}
+
+	public void addOrder(Order order)
+	{
+		orders.Add (order);
 	}
 
 	public double toMillisecondTime(double songTime, bool addOffset = false)
@@ -96,6 +114,12 @@ public class Song
 			if (line.Equals ("END"))
 			{
 				end = orderOffset;
+				continue;
+			}
+
+			if (line.Equals ("REPEAT"))
+			{
+				repeat = orderOffset;
 				continue;
 			}
 

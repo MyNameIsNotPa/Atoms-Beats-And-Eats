@@ -9,6 +9,8 @@ public class SongPlayer
 	private double startTime;
 	private List<HIT_RESULT> results;
 
+	private double repeatOffset;
+
 	public AudioSource source;
 
 	public SongPlayer(Song song, AudioSource source)
@@ -17,6 +19,7 @@ public class SongPlayer
 		this.source = source;
 		this.results = new List<HIT_RESULT> ();
 		source.clip = song.getClip();
+		repeatOffset = 0;
 	}
 
 	public void start(double startBeat)
@@ -68,14 +71,24 @@ public class SongPlayer
 
 	public double getSecondTime()
 	{
-		return (source.time == 0 ? -(((startTime + song.toMillisecondTime(8.0)) - AudioSettings.dspTime)) : source.time) - song.getOffset();
+		double secondTime = (source.time == 0 ? -(((startTime + song.toMillisecondTime(8.0)) - AudioSettings.dspTime)) : source.time) - song.getOffset();
+		secondTime += song.toMillisecondTime (repeatOffset);
+		return secondTime;
 	}
 
 	public void update(Engine engine)
 	{
-		if (engine.getSongTime () > song.getEndBeat ())
+		if (engine.getSongTime () >= song.getEndBeat ())
 		{
 			engine.finishSong ();
+			return;
+		}
+
+		if (engine.getSongTime () >= song.getRepeatBeat () + repeatOffset)
+		{
+			source.Stop ();
+			source.Play ();
+			repeatOffset += song.getRepeatBeat ();
 			return;
 		}
 
