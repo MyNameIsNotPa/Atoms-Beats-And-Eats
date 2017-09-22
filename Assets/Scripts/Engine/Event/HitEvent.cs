@@ -3,11 +3,13 @@
 public class HitEvent : Event
 {
 	private double hitSongTime;
+	private bool shown;
 
 	private HIT_RESULT result;
 
 	public HitEvent(double songTime)
 	{
+		shown = false;
 		startSongTime = songTime - 2;
 		this.hitSongTime = songTime;
 		this.result = HIT_RESULT.NONE;

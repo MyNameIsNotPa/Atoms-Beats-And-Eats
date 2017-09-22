@@ -143,7 +143,6 @@ public class Engine : MonoBehaviour
 		soundPlay.Invoke (clip, time);
 	}
 
-
 	// Getters and setters (Used internally by the engine. Don't use.)
 	//============================================================================================
 	public void setPlayer(SongPlayer player)

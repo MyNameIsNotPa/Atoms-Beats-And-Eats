@@ -71,7 +71,7 @@ public class SongPlayer
 
 	public double getSecondTime()
 	{
-		double secondTime = (source.time == 0 ? -(((startTime + song.toMillisecondTime(8.0)) - AudioSettings.dspTime)) : source.time) - song.getOffset();
+		double secondTime = source.time - song.getOffset();
 		secondTime += song.toMillisecondTime (repeatOffset);
 		return secondTime;
 	}
