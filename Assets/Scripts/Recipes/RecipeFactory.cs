@@ -12,9 +12,19 @@ public class RecipeFactory
 			return new DoubleRecipe (startTime);
 		case "Lettuce":
 			return new LettuceRecipe (startTime);
-    case "Onions":
-        return new OnionsRecipe (startTime);
-    default:
+        case "Onions":
+            return new OnionsRecipe (startTime);
+        case "Mustard":
+            return new MustardRecipe (startTime);
+        case "Cheese":
+            return new CheeseRecipe(startTime);
+        case "Ketchup":
+            return new KetchupRecipe(startTime);
+        case "Pickles":
+            return new PicklesRecipe(startTime);
+        case "Tomatoes":
+            return new TomatoesRecipe(startTime);
+        default:
 			return null;
 		}
 	}
