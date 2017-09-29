@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 
-public class HitEvent : Event
+public class HoldEvent : Event
 {
 	private double hitSongTime;
+	private double endSongTime;
 	private bool shown;
 
 	private HIT_RESULT result;
 
-	public HitEvent(double songTime)
+	public HoldEvent(double songTime, double endTime)
 	{
 		shown = false;
 		startSongTime = songTime - 2;
+		endSongTime = endTime;
 		this.hitSongTime = songTime;
 		this.result = HIT_RESULT.NONE;
 	}
@@ -41,10 +43,16 @@ public class HitEvent : Event
 			return;
 		}
 
-		// If the player presses the space bar or clicks the mouse:
-		if (engine.isKeyDown())
-		{
-			double interval = engine.getSecondTime() - engine.toSecondTime(hitSongTime);
+		if (engine.isKeyDown ()) {
+			while (engine.getFrameDown() != -1) {
+				if (engine.getSecondTime () - engine.toSecondTime (endSongTime) > Leniency.BARELY_TIME) {
+					result = HIT_RESULT.MISS;
+					done = true;
+					return;
+				}
+			}
+		} else {
+			double interval = engine.getSecondTime() - engine.toSecondTime(endSongTime);
 			//Debug.Log (interval > 0 ? "Increase offset." : "Decrease offset.");
 
 			// If the button was clicked close enough to the event:
@@ -64,3 +72,4 @@ public class HitEvent : Event
 		}
 	}
 }
+
