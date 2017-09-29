@@ -54,7 +54,7 @@ public class SpeechBubble : MonoBehaviour
 		}
 	}
 
-	public void recipeStart(Sprite image)
+	public void recipeStart(Recipe r, Sprite image)
 	{
 		// Show the recipe image
 		recipe.sprite = image;

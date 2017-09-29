@@ -16,7 +16,7 @@ public class BoolEvent : UnityEvent<bool>{};
 public class BeatHitEvent : UnityEvent<HIT_RESULT>{};
 
 [System.Serializable]
-public class RecipeStartEvent : UnityEvent<Sprite>{};
+public class RecipeStartEvent : UnityEvent<Recipe, Sprite>{};
 [System.Serializable]
 public class RecipeEndEvent : UnityEvent<bool>{};
 
@@ -116,14 +116,19 @@ public class Engine : MonoBehaviour
 	}
 	// Event invokers
 	//============================================================================================
+	public void addOrder(Order order)
+	{
+		player.getSong ().addOrder (order);
+	}
+
 	public void showHitResult(HIT_RESULT result)
 	{
 		hit.Invoke (result);
 	}
 
-	public void showRecipeStart(Sprite image)
+	public void showRecipeStart(Recipe recipe, Sprite image)
 	{
-		recipeStart.Invoke (image);
+		recipeStart.Invoke (recipe, image);
 	}
 
 	public void showOrderStart()
@@ -160,7 +165,6 @@ public class Engine : MonoBehaviour
 	{
 		soundPlay.Invoke (clip, time);
 	}
-
 
 	// Getters and setters (Used internally by the engine. Don't use.)
 	//============================================================================================
