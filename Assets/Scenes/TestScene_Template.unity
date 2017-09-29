@@ -225,7 +225,12 @@ MonoBehaviour:
 
     128
 
-    END'
+    END
+
+
+    30000
+
+    REPEAT'
   bpm: 190
   offset: 425
   startBeat: 0
