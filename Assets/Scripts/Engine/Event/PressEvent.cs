@@ -4,23 +4,11 @@ public class PressEvent : HitEvent
 {
 	private double pressSongTime;
 
-	private HIT_RESULT result;
-
 	public PressEvent(double songTime)
 	{
 		startSongTime = songTime - 2;
 		this.pressSongTime = songTime;
-		this.result = HIT_RESULT.NONE;
-	}
-
-	public double getSongTime()
-	{
-		return pressSongTime;
-	}
-
-	public HIT_RESULT getResult()
-	{
-		return result;
+		this.setResult (HIT_RESULT.NONE);
 	}
 
 	override public void finish(Engine engine)
@@ -34,7 +22,7 @@ public class PressEvent : HitEvent
 		// If no input was received in time, the player missed this event.
 		if (engine.getSecondTime() - engine.toSecondTime(pressSongTime) > Leniency.BARELY_TIME)
 		{
-			result = HIT_RESULT.MISS;
+			setResult (HIT_RESULT.MISS);
 			done = true;
 			return;
 		}
@@ -50,9 +38,9 @@ public class PressEvent : HitEvent
 
 			// Change the hit result accordingly...
 			if (interval < Leniency.HIT_TIME)
-				result = HIT_RESULT.HIT;
+				setResult (HIT_RESULT.HIT);
 			else if (interval < Leniency.BARELY_TIME)
-				result = HIT_RESULT.BARELY;
+				setResult (HIT_RESULT.BARELY);
 			else
 				return;
 

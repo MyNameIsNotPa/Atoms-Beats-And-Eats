@@ -6,6 +6,11 @@ public class HitEvent : Event
 
 	private HIT_RESULT result;
 
+	public HitEvent() 
+	{
+    
+	}
+
 	public HitEvent(double songTime)
 	{
 		startSongTime = songTime - 2;
@@ -21,6 +26,11 @@ public class HitEvent : Event
 	public HIT_RESULT getResult()
 	{
 		return result;
+	}
+
+	public void setResult(HIT_RESULT r)
+	{
+		result = r;
 	}
 
 	override public void finish(Engine engine)
