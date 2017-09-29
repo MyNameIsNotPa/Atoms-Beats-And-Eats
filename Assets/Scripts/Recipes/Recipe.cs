@@ -34,7 +34,7 @@ public class Recipe
 		List<double> hitTimes = new List<double> ();
 		foreach(Event e in events)
 		{
-			if (e.GetType() == typeof(HitEvent))
+			if (e.GetType() == typeof(HitEvent) || e.GetType() == typeof(HoldEvent))
 			{
 				hitTimes.Add (e.getStartSongTime () + 2);
 			}
@@ -97,6 +97,13 @@ public class Recipe
 						if (e.GetType () == typeof(HitEvent))
 						{
 							if (((HitEvent)e).getResult () == HIT_RESULT.MISS)
+							{
+								succeeded = false;
+							}
+						}
+						if (e.GetType () == typeof(HoldEvent))
+						{
+							if (((HoldEvent)e).getResult () == HIT_RESULT.MISS)
 							{
 								succeeded = false;
 							}

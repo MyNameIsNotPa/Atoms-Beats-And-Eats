@@ -95,6 +95,11 @@ public class Engine : MonoBehaviour
         }
 	}
 
+	public bool isKeyPressed()
+	{
+		return Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0);
+	}
+
 	public bool isPauseKeyDown()
 	{
 		return Input.GetKeyDown (KeyCode.Escape);

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-public class HitEvent : Event
+public class HoldEvent : Event
 {
 	private double hitSongTime;
+	private double endSongTime;
 	private bool shown;
 
 	private HIT_RESULT result;
@@ -10,11 +11,15 @@ public class HitEvent : Event
     private int timeDisabled = -1;
     private int timeToDisable = 100;
 
-	public HitEvent(double songTime)
+	private bool hitStart;
+
+	public HoldEvent(double songTime, double endTime)
 	{
+		hitStart = false;
 		shown = false;
 		startSongTime = songTime - 2;
 		this.hitSongTime = songTime;
+		this.endSongTime = endTime;
 		this.result = HIT_RESULT.NONE;
 	}
 
@@ -35,14 +40,38 @@ public class HitEvent : Event
 
 	// Update this hit event each song tick
 	override public void update(Engine engine)
-    { 
+    {
+		// If no input was received in time, the player missed this event.
+		if (!hitStart && engine.getSecondTime() - engine.toSecondTime(hitSongTime) > Leniency.BARELY_TIME)
+		{
+			result = HIT_RESULT.MISS;
+			done = true;
+			return;
+		}
+
         // If no input was received in time, the player missed this event.
-        if (engine.getSecondTime() - engine.toSecondTime(hitSongTime) > Leniency.BARELY_TIME)
+        if (engine.getSecondTime() - engine.toSecondTime(endSongTime) > Leniency.BARELY_TIME)
         {
             result = HIT_RESULT.MISS;
             done = true;
             return;
         }
+
+		if (hitStart && !engine.isKeyPressed ())
+		{
+			double interval = engine.getSecondTime() - engine.toSecondTime(endSongTime);
+			interval = UnityEngine.Mathf.Abs((float)interval);
+
+			if (interval < Leniency.HIT_TIME)
+				result = HIT_RESULT.HIT;
+			else if (interval < Leniency.BARELY_TIME)
+				result = HIT_RESULT.BARELY;
+			else
+				result = HIT_RESULT.MISS;
+
+			done = true;
+			return;
+		}
 
         if (timeDisabled == -1)
         {
@@ -67,7 +96,7 @@ public class HitEvent : Event
                 }
 
                 // And we are done with this event.
-                done = true;
+				hitStart = true;
                 return;
             }
         }
