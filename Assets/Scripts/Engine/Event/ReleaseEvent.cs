@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ReleaseEvent : Event
+public class ReleaseEvent : HitEvent
 {
 	private double releaseSongTime;
 

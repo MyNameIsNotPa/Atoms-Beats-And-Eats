@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PressEvent : Event
+public class PressEvent : HitEvent
 {
 	private double pressSongTime;
 
