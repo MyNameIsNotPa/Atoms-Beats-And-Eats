@@ -73,7 +73,6 @@ public class Engine : MonoBehaviour
 		{
 			gamePaused = !gamePaused;
 		}
-
 		// Lock and hide mouse cursor if the game is running
 		Cursor.visible = gamePaused;
 		Cursor.lockState = gamePaused ? CursorLockMode.None : CursorLockMode.Locked;
@@ -95,12 +94,16 @@ public class Engine : MonoBehaviour
         }
 	}
 
+	public bool getKeyHeld()
+	{
+		return Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0);
+	}
+
 	public bool isPauseKeyDown()
 	{
 		return Input.GetKeyDown (KeyCode.Escape);
 	}
-
-
+		
 	// Event invokers
 	//============================================================================================
 	public void addOrder(Order order)
