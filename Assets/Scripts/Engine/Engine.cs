@@ -64,6 +64,8 @@ public class Engine : MonoBehaviour
 	//============================================================================================
 	public bool keyPressed = false;
 
+    private static bool keyDisabled;
+
 	// Game pausing
 	//============================================================================================
 	public static bool gamePaused = false;
@@ -91,7 +93,15 @@ public class Engine : MonoBehaviour
 	//============================================================================================
 	public bool isKeyDown()
 	{
-		return Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0);
+        if (keyDisabled)
+        {
+            return false;
+        }
+        else
+        {
+            keyDisabled = true;
+            return Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+        }
 	}
 
 	public bool isKeyUp()
@@ -142,7 +152,8 @@ public class Engine : MonoBehaviour
 
 	public void updateBeat()
 	{
-		beatUpdate.Invoke ((float) player.getSongTime ());
+        keyDisabled = false;
+        beatUpdate.Invoke ((float) player.getSongTime ());
 	}
 
 	public void finishSong()
