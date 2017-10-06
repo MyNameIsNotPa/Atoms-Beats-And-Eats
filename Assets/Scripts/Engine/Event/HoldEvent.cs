@@ -46,6 +46,11 @@ public class HoldEvent : Event
 		}
 
 		if (engine.getKeyPressed()) {
+				if (engine.getSecondTime () - engine.toSecondTime (hitSongTime) < -(Leniency.BARELY_TIME)) {
+					result = HIT_RESULT.MISS;
+					done = true;
+					return;
+				}
 				if (engine.getSecondTime () - engine.toSecondTime (endSongTime) > Leniency.BARELY_TIME) {
 					result = HIT_RESULT.MISS;
 					done = true;
