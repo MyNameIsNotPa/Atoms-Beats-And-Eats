@@ -162,11 +162,6 @@ MonoBehaviour:
 
     48
 
-    Single, 0
-
-
-    52
-
     Double, 0
 
 
@@ -179,22 +174,35 @@ MonoBehaviour:
 
     Single, 0
 
-    Single, 4
 
-    Single, 8
+    68
 
-    Single, 12
+    Double, 0
+
+
+    76
+
+    Single, 0
 
 
     80
 
     Single, 0
 
-    Double, 4
 
-    Single, 8
+    84
 
-    Single, 12
+    Double, 0
+
+
+    88
+
+    Single, 0
+
+
+    92
+
+    Single, 0
 
 
     96
@@ -204,7 +212,7 @@ MonoBehaviour:
 
     100
 
-    Single, 0
+    Double, 0
 
 
     104
@@ -217,13 +225,14 @@ MonoBehaviour:
     Double, 0
 
 
-    112
+    116
+
+    Double, 0
+
+
+    124
 
     Single, 0
-
-    Double, 4
-
-    Single, 8
 
 
     130
@@ -441,6 +450,11 @@ Prefab:
     - target: {fileID: 4917554440035476, guid: 3259ffffe9cb7e646a85db572d14ee79, type: 2}
       propertyPath: m_LocalPosition.y
       value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545764935143974, guid: 3259ffffe9cb7e646a85db572d14ee79,
+        type: 2}
+      propertyPath: showDebugVisuals
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3259ffffe9cb7e646a85db572d14ee79, type: 2}
