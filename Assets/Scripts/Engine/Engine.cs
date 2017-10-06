@@ -60,9 +60,6 @@ public class Engine : MonoBehaviour
 	public GameStartEvent gameStart;
 	[Header("Play Sound")]
 	public PlaySoundEvent soundPlay;
-	// Frame Data
-	//============================================================================================
-	public bool keyPressed = false;
 
     private static bool keyDisabled;
 
@@ -75,13 +72,6 @@ public class Engine : MonoBehaviour
 		if (isPauseKeyDown ())
 		{
 			gamePaused = !gamePaused;
-		}
-		// Sets the frame data values
-		if (isKeyDown ()) {
-			keyPressed = true;
-		}
-		if (isKeyUp ()) {
-			keyPressed = false;
 		}
 		// Lock and hide mouse cursor if the game is running
 		Cursor.visible = gamePaused;
@@ -104,20 +94,16 @@ public class Engine : MonoBehaviour
         }
 	}
 
-	public bool isKeyUp()
+	public bool getKeyDown()
 	{
-		return Input.GetKeyUp (KeyCode.Space) || Input.GetMouseButtonUp (0);
+		return Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0);
 	}
 
 	public bool isPauseKeyDown()
 	{
 		return Input.GetKeyDown (KeyCode.Escape);
 	}
-
-	public bool getKeyPressed()
-	{
-		return keyPressed;
-	}
+		
 	// Event invokers
 	//============================================================================================
 	public void addOrder(Order order)
