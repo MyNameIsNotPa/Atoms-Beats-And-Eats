@@ -39,7 +39,6 @@ public class HitEvent : Event
         // If no input was received in time, the player missed this event.
         if (engine.getSecondTime() - engine.toSecondTime(hitSongTime) > Leniency.BARELY_TIME)
         {
-            Debug.Log("MISSED");
             result = HIT_RESULT.MISS;
             done = true;
             return;
@@ -64,7 +63,6 @@ public class HitEvent : Event
                 else
                 {
                     timeDisabled = 0;
-                    Debug.Log("TOO EARLY");
                     return;
                 }
 
@@ -76,7 +74,6 @@ public class HitEvent : Event
         else if (timeDisabled > timeToDisable)
         {
             timeDisabled = -1;
-            Debug.Log("GOOD AGAIN");
         }
         else
         {

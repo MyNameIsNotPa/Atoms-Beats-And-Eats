@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d5716c8887c64fa57f323174010ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: TestBeat
+  songName: level1
   map: '32
 
     Single, 0
@@ -157,7 +157,7 @@ MonoBehaviour:
 
     40
 
-    Double, 0
+    Single, 0
 
 
     48
@@ -165,18 +165,21 @@ MonoBehaviour:
     Single, 0
 
 
-    56
+    52
+
+    Double, 0
+
+
+    60
 
     Single, 0
-
-    Double, 4
 
 
     64
 
     Single, 0
 
-    Double, 4
+    Single, 4
 
     Single, 8
 
@@ -223,7 +226,7 @@ MonoBehaviour:
     Single, 8
 
 
-    128
+    130
 
     END
 
@@ -231,8 +234,8 @@ MonoBehaviour:
     30000
 
     REPEAT'
-  bpm: 190
-  offset: 425
+  bpm: 200
+  offset: 0
   startBeat: 0
 --- !u!82 &275011719
 AudioSource:
