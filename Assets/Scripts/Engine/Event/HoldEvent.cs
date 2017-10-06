@@ -5,12 +5,14 @@ public class HoldEvent : Event
 	private double hitSongTime;
 	private double endSongTime;
 	private bool shown;
+	private bool pressed;
 
 	private HIT_RESULT result;
 
 	public HoldEvent(double songTime, double endTime)
 	{
 		shown = false;
+		pressed = false;
 		startSongTime = songTime - 2;
 		endSongTime = endTime;
 		this.hitSongTime = songTime;
@@ -36,39 +38,44 @@ public class HoldEvent : Event
 	override public void update(Engine engine)
 	{
 		// If no input was received in time, the player missed this event.
-		if (engine.getSecondTime() - engine.toSecondTime(hitSongTime) > Leniency.BARELY_TIME)
+		if (engine.getSecondTime() - engine.toSecondTime(endSongTime) > Leniency.BARELY_TIME)
 		{
 			result = HIT_RESULT.MISS;
 			done = true;
 			return;
 		}
 
-		if (engine.isKeyDown ()) {
-			while (engine.getFrameDown() != -1) {
-				if (engine.getSecondTime () - engine.toSecondTime (endSongTime) > Leniency.BARELY_TIME) {
+		if (engine.getKeyPressed()) {
+				if (engine.getSecondTime () - engine.toSecondTime (hitSongTime) > Leniency.BARELY_TIME) {
 					result = HIT_RESULT.MISS;
 					done = true;
 					return;
 				}
-			}
+				pressed = true;
 		} else {
-			double interval = engine.getSecondTime() - engine.toSecondTime(endSongTime);
-			//Debug.Log (interval > 0 ? "Increase offset." : "Decrease offset.");
-
-			// If the button was clicked close enough to the event:
-			interval = UnityEngine.Mathf.Abs ((float) interval);
-
-			// Change the hit result accordingly...
-			if (interval < Leniency.HIT_TIME)
-				result = HIT_RESULT.HIT;
-			else if (interval < Leniency.BARELY_TIME)
-				result = HIT_RESULT.BARELY;
-			else
+			if (!pressed && engine.getSecondTime () - engine.toSecondTime (hitSongTime) > Leniency.BARELY_TIME) {
+				result = HIT_RESULT.MISS;
+				done = true;
 				return;
+			} else if (pressed) {
+				double interval = engine.getSecondTime () - engine.toSecondTime (endSongTime);
+				//Debug.Log (interval > 0 ? "Increase offset." : "Decrease offset.");
 
-			// And we are done with this event.
-			done = true;
-			return;
+				// If the button was clicked close enough to the event:
+				interval = UnityEngine.Mathf.Abs ((float)interval);
+
+				// Change the hit result accordingly...
+				if (interval < Leniency.HIT_TIME)
+					result = HIT_RESULT.HIT;
+				else if (interval < Leniency.BARELY_TIME)
+					result = HIT_RESULT.BARELY;
+				else
+					return;
+
+				// And we are done with this event.
+				done = true;
+				return;
+			}
 		}
 	}
 }

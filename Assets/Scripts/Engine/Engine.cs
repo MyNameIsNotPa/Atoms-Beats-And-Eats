@@ -62,8 +62,7 @@ public class Engine : MonoBehaviour
 	public PlaySoundEvent soundPlay;
 	// Frame Data
 	//============================================================================================
-	public double frameDown = -1;
-	public double frameUp = -1;
+	public bool keyPressed = false;
 
 	// Game pausing
 	//============================================================================================
@@ -77,15 +76,10 @@ public class Engine : MonoBehaviour
 		}
 		// Sets the frame data values
 		if (isKeyDown ()) {
-			if (frameDown == -1) {
-				frameDown = player.getSecondTime ();
-				frameUp = -1;
-			}
-		} else {
-			if (frameDown != -1) {
-				frameUp = player.getSecondTime ();
-				frameDown = -1;
-			}
+			keyPressed = true;
+		}
+		if (isKeyUp ()) {
+			keyPressed = false;
 		}
 		// Lock and hide mouse cursor if the game is running
 		Cursor.visible = gamePaused;
@@ -100,19 +94,19 @@ public class Engine : MonoBehaviour
 		return Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0);
 	}
 
+	public bool isKeyUp()
+	{
+		return Input.GetKeyUp (KeyCode.Space) || Input.GetMouseButtonUp (0);
+	}
+
 	public bool isPauseKeyDown()
 	{
 		return Input.GetKeyDown (KeyCode.Escape);
 	}
 
-	public double getFrameDown()
+	public bool getKeyPressed()
 	{
-		return frameDown;
-	}
-
-	public double getFrameUp()
-	{
-		return frameUp;
+		return keyPressed;
 	}
 	// Event invokers
 	//============================================================================================
