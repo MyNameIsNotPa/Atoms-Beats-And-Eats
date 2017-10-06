@@ -11,6 +11,7 @@ public class DoubleRecipe : Recipe
 		image = Resources.Load<Sprite> ("RecipeIcons/Double");
 		events.Add (new SoundEvent(startSongTime));
 		events.Add (new SoundEvent(startSongTime + 1));
-		events.Add (new HoldEvent (startSongTime + 2, startSongTime + 3));
+		events.Add (new HitEvent (startSongTime + 2));
+		events.Add (new HitEvent (startSongTime + 3));
 	}
 }
