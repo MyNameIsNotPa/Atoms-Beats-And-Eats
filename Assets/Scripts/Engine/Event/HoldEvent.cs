@@ -46,7 +46,7 @@ public class HoldEvent : Event
 		}
 
 		if (engine.getKeyPressed()) {
-				if (engine.getSecondTime () - engine.toSecondTime (hitSongTime) > Leniency.BARELY_TIME) {
+				if (engine.getSecondTime () - engine.toSecondTime (endSongTime) > Leniency.BARELY_TIME) {
 					result = HIT_RESULT.MISS;
 					done = true;
 					return;
@@ -70,7 +70,7 @@ public class HoldEvent : Event
 				else if (interval < Leniency.BARELY_TIME)
 					result = HIT_RESULT.BARELY;
 				else
-					return;
+					result = HIT_RESULT.MISS;
 
 				// And we are done with this event.
 				done = true;
