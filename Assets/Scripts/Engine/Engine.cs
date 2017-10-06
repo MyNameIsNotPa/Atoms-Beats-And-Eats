@@ -94,7 +94,7 @@ public class Engine : MonoBehaviour
         }
 	}
 
-	public bool getKeyDown()
+	public bool getKeyHeld()
 	{
 		return Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0);
 	}

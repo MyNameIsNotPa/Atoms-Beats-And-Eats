@@ -45,7 +45,7 @@ public class HoldEvent : Event
 			return;
 		}
 
-		if (engine.getKeyDown()) {
+		if (engine.getKeyHeld()) {
 				if (engine.getSecondTime () - engine.toSecondTime (hitSongTime) < -(Leniency.BARELY_TIME)) {
 					result = HIT_RESULT.MISS;
 					done = true;
