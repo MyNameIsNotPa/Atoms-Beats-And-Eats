@@ -149,81 +149,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d5716c8887c64fa57f323174010ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: TestBeat
-  map: '32
+  songName: level2
+  map: '144
 
     Single, 0
 
+    Ketchup, 8
 
-    40
-
-    Double, 0
-
-
-    48
-
-    Single, 0
+    Ketchup, 12
 
 
-    56
+    168
 
     Single, 0
 
-    Double, 4
+    Mustard, 4
 
 
-    64
-
-    Single, 0
-
-    Double, 4
-
-    Single, 8
-
-    Single, 12
-
-
-    80
-
-    Single, 0
-
-    Double, 4
-
-    Single, 8
-
-    Single, 12
-
-
-    96
-
-    Single, 0
-
-
-    100
-
-    Single, 0
-
-
-    104
-
-    Single, 0
-
-
-    108
-
-    Double, 0
-
-
-    112
-
-    Single, 0
-
-    Double, 4
-
-    Single, 8
-
-
-    128
+    290
 
     END
 
@@ -231,9 +174,9 @@ MonoBehaviour:
     30000
 
     REPEAT'
-  bpm: 190
-  offset: 425
-  startBeat: 28
+  bpm: 270
+  offset: 50
+  startBeat: 135
 --- !u!82 &275011719
 AudioSource:
   m_ObjectHideFlags: 0
