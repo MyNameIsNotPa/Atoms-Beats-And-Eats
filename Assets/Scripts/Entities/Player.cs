@@ -14,6 +14,18 @@ public class Player : MonoBehaviour
 		lastMeasure = -1;
 	}
 
+	public void recipeEnd(bool didSucceed)
+	{
+		if (didSucceed)
+		{
+			animator.SetTrigger ("Success");
+		}
+		else
+		{
+			animator.SetTrigger ("Fail");
+		}
+	}
+
 	// Animate the player to the beat
 	public void updateBeat(float songTime)
 	{
