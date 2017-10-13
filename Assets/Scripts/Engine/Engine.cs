@@ -16,7 +16,7 @@ public class BoolEvent : UnityEvent<bool>{};
 public class BeatHitEvent : UnityEvent<HIT_RESULT>{};
 
 [System.Serializable]
-public class RecipeStartEvent : UnityEvent<Sprite>{};
+public class RecipeStartEvent : UnityEvent<Recipe, Sprite>{};
 [System.Serializable]
 public class RecipeEndEvent : UnityEvent<bool>{};
 
@@ -61,6 +61,8 @@ public class Engine : MonoBehaviour
 	[Header("Play Sound")]
 	public PlaySoundEvent soundPlay;
 
+    private static bool keyDisabled;
+
 	// Game pausing
 	//============================================================================================
 	public static bool gamePaused = false;
@@ -71,7 +73,6 @@ public class Engine : MonoBehaviour
 		{
 			gamePaused = !gamePaused;
 		}
-
 		// Lock and hide mouse cursor if the game is running
 		Cursor.visible = gamePaused;
 		Cursor.lockState = gamePaused ? CursorLockMode.None : CursorLockMode.Locked;
@@ -82,25 +83,42 @@ public class Engine : MonoBehaviour
 	//============================================================================================
 	public bool isKeyDown()
 	{
-		return Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0);
+        if (keyDisabled)
+        {
+            return false;
+        }
+        else
+        {
+            keyDisabled = true;
+            return Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+        }
+	}
+		
+	public bool getKeyHeld()
+	{
+		return Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0);
 	}
 
 	public bool isPauseKeyDown()
 	{
 		return Input.GetKeyDown (KeyCode.Escape);
 	}
-
-
+		
 	// Event invokers
 	//============================================================================================
+	public void addOrder(Order order)
+	{
+		player.getSong ().addOrder (order);
+	}
+
 	public void showHitResult(HIT_RESULT result)
 	{
 		hit.Invoke (result);
 	}
 
-	public void showRecipeStart(Sprite image)
+	public void showRecipeStart(Recipe recipe, Sprite image)
 	{
-		recipeStart.Invoke (image);
+		recipeStart.Invoke (recipe, image);
 	}
 
 	public void showOrderStart()
@@ -120,7 +138,8 @@ public class Engine : MonoBehaviour
 
 	public void updateBeat()
 	{
-		beatUpdate.Invoke ((float) player.getSongTime ());
+        keyDisabled = false;
+        beatUpdate.Invoke ((float) player.getSongTime ());
 	}
 
 	public void finishSong()
@@ -137,7 +156,6 @@ public class Engine : MonoBehaviour
 	{
 		soundPlay.Invoke (clip, time);
 	}
-
 
 	// Getters and setters (Used internally by the engine. Don't use.)
 	//============================================================================================

@@ -225,10 +225,15 @@ MonoBehaviour:
 
     128
 
-    END'
+    END
+
+
+    30000
+
+    REPEAT'
   bpm: 190
   offset: 425
-  startBeat: 0
+  startBeat: 28
 --- !u!82 &275011719
 AudioSource:
   m_ObjectHideFlags: 0
@@ -360,7 +365,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1137412699}
   - component: {fileID: 1137412698}
-  - component: {fileID: 1137412697}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -368,24 +372,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1137412697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1137412696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1137412698
 MonoBehaviour:
   m_ObjectHideFlags: 0

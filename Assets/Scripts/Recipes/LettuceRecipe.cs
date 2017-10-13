@@ -10,6 +10,7 @@ public class LettuceRecipe : Recipe
 	{
 		image = Resources.Load<Sprite> ("RecipeIcons/Lettuce");
 		events.Add (new SoundEvent(startSongTime));
+		events.Add (new SoundEvent(startSongTime + 1.5));
 		events.Add (new HitEvent (startSongTime + 2));
 		events.Add (new HitEvent (startSongTime + 3.5));
 	}

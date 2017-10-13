@@ -29,10 +29,28 @@ public class Recipe
 		started = false;
 	}
 
+	public List<double> getHitTimes()
+	{
+		List<double> hitTimes = new List<double> ();
+		foreach(Event e in events)
+		{
+			if (e.GetType() == typeof(HitEvent) || e.GetType() == typeof(HoldEvent))
+			{
+				hitTimes.Add (e.getStartSongTime () + 2);
+			}
+		}
+		return hitTimes;
+	}
+
+	public Sprite getSprite()
+	{
+		return image;
+	}
+
 	public void start(Engine engine)
 	{
 		started = true;
-		engine.showRecipeStart (image);
+		engine.showRecipeStart (this, image);
 	}
 
 	public void finish(Engine engine)
@@ -76,10 +94,12 @@ public class Recipe
 
 					if (e.isDone ())
 					{
-						if (e.GetType () == typeof(HitEvent))
-						{
-							if (((HitEvent)e).getResult () == HIT_RESULT.MISS)
-							{
+						if (e.GetType () == typeof(HitEvent)) {
+							if (((HitEvent)e).getResult () == HIT_RESULT.MISS) {
+								succeeded = false;
+							}
+						} else if (e.GetType () == typeof(HoldEvent)){
+							if (((HoldEvent)e).getResult () == HIT_RESULT.MISS) {
 								succeeded = false;
 							}
 						}
