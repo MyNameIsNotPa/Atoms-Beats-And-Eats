@@ -15,6 +15,7 @@ public class SpeechBubble : MonoBehaviour
 	private AudioSource audioSource;
 
 	private AudioClip successClip;
+	private AudioClip failClip;
 
 	void Awake ()
 	{
@@ -27,12 +28,14 @@ public class SpeechBubble : MonoBehaviour
 		failure = Resources.Load<Sprite> ("RecipeIcons/Failure");
 
 		successClip = Resources.Load<AudioClip> ("Sounds/Success");
+		failClip = Resources.Load<AudioClip> ("Sounds/Fail");
 	}
 
 	// Play a sound when an order starts
 	public void playSound(AudioClip clip, double time)
 	{
 		audioSource.clip = clip;
+		audioSource.volume = 1f;
 		audioSource.PlayScheduled (time);
 	}
 
@@ -69,6 +72,13 @@ public class SpeechBubble : MonoBehaviour
 		if (didSucceed)
 		{
 			audioSource.clip = successClip;
+			audioSource.volume = 0.3f;
+			audioSource.Play ();
+		}
+		else
+		{
+			audioSource.clip = failClip;
+			audioSource.volume = 0.3f;
 			audioSource.Play ();
 		}
 		// Animate the speech bubble

@@ -13,8 +13,12 @@ public class Customer
 	private ORDER_RESULT orderResult;
 	private bool shownResult;
 
-	private Vector3 startPos = new Vector3 (-150f, -15f, 0);
-	private Vector3 endPos = new Vector3 (-25f, -15f, 0);
+	private Vector3 startPos = new Vector3 (-150f, -20f, 0);
+	private Vector3 endPos = new Vector3 (-40f, -20f, 0);
+
+	private Animator animator;
+
+	private SpriteRenderer renderer;
 
 	public Customer(double startSongTime, double endSongTime)
 	{
@@ -25,6 +29,8 @@ public class Customer
 		this.startSongTime = startSongTime;
 		this.endSongTime = endSongTime;
 		shownResult = false;
+		animator = customer.GetComponent<Animator> ();
+		renderer = customer.GetComponent<SpriteRenderer> ();
 	}
 
 	public void finishOrder(double currentBeat, ORDER_RESULT result)
@@ -57,9 +63,15 @@ public class Customer
 		if (songTime >= startSongTime)
 		{
 			float interval = (float) ((songTime - startSongTime) / (endSongTime - startSongTime));
+			if (interval >= 1)
+			{
+				renderer.sortingOrder = -1;
+				animator.SetBool ("Order", true);
+			}
 			interval = Mathf.Max(0, Mathf.Min (1, interval));
 			if (hasOrdered)
 			{
+				animator.SetBool ("WalkOut", true);
 				if (!shownResult)
 				{
 					shownResult = true;
