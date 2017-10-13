@@ -12,6 +12,8 @@ public class Order
 	private bool done;
 	private bool started;
 	private bool shown;
+	private bool oneSucceeded;
+	private bool oneFailed;
 
 	private bool finished;
 
@@ -29,6 +31,8 @@ public class Order
 		started = false;
 		finished = false;
 		shown = false;
+		oneSucceeded = false;
+		oneFailed = false;
 		result = ORDER_RESULT.SUCCESS;
 	}
 
@@ -112,9 +116,18 @@ public class Order
 					if (r.isDone ())
 					{
 						r.finish (engine);
-						if (!r.didSucceed ())
-						{
-							result = ORDER_RESULT.FAILURE;
+						if (!r.didSucceed ()) {
+							if (oneSucceeded) {
+								result = ORDER_RESULT.BARELY;
+							} else {
+								result = ORDER_RESULT.FAILURE;
+							}
+							oneFailed = true;
+						} else {
+							if (oneFailed) {
+								result = ORDER_RESULT.BARELY;
+							}
+							oneSucceeded = true;
 						}
 					}
 				}
