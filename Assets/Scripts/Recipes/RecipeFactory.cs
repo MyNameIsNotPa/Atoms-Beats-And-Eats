@@ -10,6 +10,8 @@ public class RecipeFactory
 			return new SingleRecipe (startTime);
 		case "Double":
 			return new DoubleRecipe (startTime);
+		case "Triple":
+			return new TripleRecipe (startTime);
 		case "Lettuce":
 			return new LettuceRecipe (startTime);
         case "Onions":
