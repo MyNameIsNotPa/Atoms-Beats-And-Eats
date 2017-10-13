@@ -29,20 +29,43 @@ public class Recipe
 		started = false;
 	}
 
-	public List<double> getHitTimes()
-	{
-		List<double> hitTimes = new List<double> ();
-		foreach(Event e in events)
-		{
-			if (e.GetType() == typeof(HitEvent) || e.GetType() == typeof(HoldEvent))
-			{
-				hitTimes.Add (e.getStartSongTime () + 2);
-			}
-		}
-		return hitTimes;
-	}
+    public List<double> getHitTimes()
+    {
+        List<double> hitTimes = new List<double>();
+        foreach (Event e in events)
+        {
+            if (e.GetType() == typeof(HitEvent))
+            {
+                hitTimes.Add(e.getStartSongTime() + 2);
+            }
+            else if (e.GetType() == typeof(HoldEvent))
+            {
+                hitTimes.Add(((HoldEvent)e).getSongTime());
+                hitTimes.Add(((HoldEvent)e).getEndTime());
+            }
+        }
+        return hitTimes;
+    }
 
-	public Sprite getSprite()
+    public List<string> getHitTypes()
+    {
+        List<string> hitTypes = new List<string>();
+        foreach (Event e in events)
+        {
+            if (e.GetType() == typeof(HitEvent))
+            {
+                hitTypes.Add("hit");
+            }
+            else if (e.GetType() == typeof(HoldEvent))
+            {
+                hitTypes.Add("holdStart");
+                hitTypes.Add("holdStop");
+            }
+        }
+        return hitTypes;
+    }
+
+    public Sprite getSprite()
 	{
 		return image;
 	}
