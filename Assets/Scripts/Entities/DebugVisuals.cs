@@ -28,6 +28,10 @@ public class DebugVisuals : MonoBehaviour
 			beatSlider.value = songTime - Mathf.Floor (songTime);
 			measureSlider.value = Mathf.Floor (songTime) % 4;
 			beatNum.text = "" + Mathf.Floor (songTime);
+			if (Input.GetKeyDown (KeyCode.Space))
+			{
+				Debug.Log (Mathf.RoundToInt (songTime));
+			}
 		}
 	}
 }
