@@ -26,6 +26,12 @@ public class Practice : MonoBehaviour
 
 	void Start ()
 	{
+		if (GameObject.FindGameObjectWithTag("PracticeRecipes"))
+		{
+			GameObject practiceRecipes = GameObject.FindGameObjectWithTag ("PracticeRecipes");
+			recipes = practiceRecipes.GetComponent<PracticeRecipes> ().getRecipes ();
+			GameObject.Destroy (practiceRecipes);
+		}
 		recipeList = new List<string>(recipes.Split ('\n'));
 		nextOrder = 0;
 		successes = 0;

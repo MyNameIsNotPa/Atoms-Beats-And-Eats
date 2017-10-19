@@ -149,93 +149,188 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d5716c8887c64fa57f323174010ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: level1
-  map: '32
+  songName: level2
+  map: '16
 
     Single, 0
+
+    Ketchup, 4
+
+
+    24
+
+    Single, 0
+
+    Ketchup, 4
+
+
+    32
+
+    Single, 0
+
+    Ketchup, 4
 
 
     40
 
-    Single, 0
+    Double, 0
+
+    Ketchup, 4
 
 
     48
 
-    Double, 0
+    Triple, 0
 
+    Ketchup, 8
 
-    60
-
-    Single, 0
+    Ketchup, 12
 
 
     64
 
-    Single, 0
+    Double, 0
 
 
     68
 
     Double, 0
 
+    Ketchup, 4
 
-    76
-
-    Single, 0
-
-
-    80
-
-    Single, 0
+    Ketchup, 8
 
 
     84
 
-    Double, 0
-
-
-    88
-
     Single, 0
 
-
-    92
-
-    Single, 0
+    Mustard, 4
 
 
     96
 
+    Double, 0
+
+    Ketchup, 4
+
+    Ketchup, 8
+
+    Ketchup, 12
+
+
+    112
+
     Single, 0
 
+    Mustard, 4
 
-    100
+
+    120
+
+    Single, 0
+
+    Mustard, 4
+
+
+    128
+
+    Single, 0
+
+    Mustard, 4
+
+
+    136
+
+    Single, 0
+
+    Ketchup, 4
+
+
+    144
+
+    Triple, 0
+
+    Ketchup, 8
+
+    Ketchup, 12
+
+
+    168
+
+    Single, 0
+
+    Mustard, 4
+
+
+    180
+
+    Triple, 0
+
+
+    188
 
     Double, 0
 
 
-    104
+    192
 
     Single, 0
 
-
-    108
-
-    Double, 0
+    Mustard, 4
 
 
-    116
-
-    Double, 0
-
-
-    124
+    208
 
     Single, 0
 
+    Ketchup, 4
 
-    130
+
+    216
+
+    Single, 0
+
+    Ketchup, 4
+
+
+    224
+
+    Triple, 0
+
+    Ketchup, 8
+
+    Ketchup, 12
+
+
+    240
+
+    Triple, 0
+
+
+    248
+
+    Triple, 0
+
+
+    256
+
+    Triple, 0
+
+
+    264
+
+    Triple, 0
+
+
+    272
+
+    Single, 0
+
+    Mustard, 4
+
+
+    290
 
     END
 
@@ -243,8 +338,8 @@ MonoBehaviour:
     30000
 
     REPEAT'
-  bpm: 200
-  offset: 0
+  bpm: 270
+  offset: 50
   startBeat: 0
 --- !u!82 &275011719
 AudioSource:
@@ -377,6 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137412699}
   - component: {fileID: 1137412698}
+  - component: {fileID: 1137412697}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -384,6 +480,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1137412697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1137412696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!114 &1137412698
 MonoBehaviour:
   m_ObjectHideFlags: 0

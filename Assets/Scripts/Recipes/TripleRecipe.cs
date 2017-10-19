@@ -13,7 +13,10 @@ public class TripleRecipe : Recipe
 		events.Add (new SoundEvent(startSongTime + 1));
 		events.Add (new SoundEvent(startSongTime + 2));
 		events.Add (new HitEvent (startSongTime + 4));
+		events.Add (new SoundEvent(startSongTime + 4, Resources.Load<AudioClip>("Sounds/sizzle")));
 		events.Add (new HitEvent (startSongTime + 5));
+		events.Add (new SoundEvent(startSongTime + 5, Resources.Load<AudioClip>("Sounds/sizzle")));
 		events.Add (new HitEvent (startSongTime + 6));
+		events.Add (new SoundEvent(startSongTime + 6, Resources.Load<AudioClip>("Sounds/sizzle")));
 	}
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Engine
   - ScoreManager
+  - PracticeRecipes
   layers:
   - Default
   - TransparentFX
