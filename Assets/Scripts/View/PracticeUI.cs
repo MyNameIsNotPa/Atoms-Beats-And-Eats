@@ -7,8 +7,10 @@ public class PracticeUI : MonoBehaviour
 {
 	private Transform dots;
 	private Slider slider;
-	private GameObject dot;
-	private float lastTime;
+    private GameObject dot;
+    private GameObject downArrow;
+    private GameObject upArrow;
+    private float lastTime;
 
 	private Text headerText;
 
@@ -19,6 +21,7 @@ public class PracticeUI : MonoBehaviour
 
 	private List<double> hitTimes;
 	private List<Image> sprites;
+    private List<string> hitTypes;
 
 	private Sprite success;
 	private Sprite failure;
@@ -31,8 +34,10 @@ public class PracticeUI : MonoBehaviour
 		dots = transform.Find ("BeatIndicator/Slider/Dots");
 		headerText = transform.Find ("Header/Text").GetComponent<Text> ();
 		slider = GetComponentInChildren<Slider> ();
-		dot = Resources.Load<GameObject> ("Prefabs/Dot");
-		preview = transform.Find ("Header/Preview").GetComponent<Image> ();
+        dot = Resources.Load<GameObject>("Prefabs/Dot");
+        downArrow = Resources.Load<GameObject>("Prefabs/DownArrow");
+        upArrow = Resources.Load<GameObject>("Prefabs/UpArrow");
+        preview = transform.Find ("Header/Preview").GetComponent<Image> ();
 		preview.sprite = Practice.firstRecipe.getSprite();
 		animator = GetComponent<Animator> ();
 
@@ -62,14 +67,29 @@ public class PracticeUI : MonoBehaviour
 		float start = (float) recipe.getStartSongTime ();
 		hitTimes.Clear ();
 		sprites.Clear ();
+        hitTypes = recipe.getHitTypes();
+        int hitTypesNum = 0;
 		foreach (double hit in recipe.getHitTimes())
 		{
 			hitTimes.Add (hit);
-			GameObject newdot = GameObject.Instantiate (dot, dots);
 			float offset = ((float)hit) - start;
 			float num = -475f + (offset * 475) / 4f;
-			newdot.GetComponent<RectTransform> ().localPosition = new Vector3 (num, 0, 0);
-			sprites.Add (newdot.GetComponent<Image> ());
+            GameObject newdot;
+            if (hitTypes[hitTypesNum] == "hit")
+            {
+                newdot = GameObject.Instantiate(dot, dots);
+            }
+            else if (hitTypes[hitTypesNum] == "holdStart")
+            {
+                newdot = GameObject.Instantiate(downArrow, dots);
+            }
+            else
+            {
+                newdot = GameObject.Instantiate(upArrow, dots);
+            }
+            newdot.GetComponent<RectTransform>().localPosition = new Vector3(num, 0, 0);
+            sprites.Add(newdot.GetComponent<Image>());
+            hitTypesNum++;
 		}
 	}
 
@@ -95,7 +115,13 @@ public class PracticeUI : MonoBehaviour
 	{
 		if (sprites.Count > 0)
 		{
-			sprites [0].sprite = result == HIT_RESULT.MISS ? failure : success;
+            //if the current event is a HoldEvent (meaning the current sprite is a down arrow), change the following up arrow as well
+            if (sprites[0].name == GameObject.Instantiate(downArrow).GetComponent<Image>().name)
+            {
+                sprites[1].sprite = result == HIT_RESULT.MISS ? failure : success;
+                sprites.RemoveAt(1);
+            }
+            sprites [0].sprite = result == HIT_RESULT.MISS ? failure : success;
 			sprites.RemoveAt (0);
 		}
 	}
