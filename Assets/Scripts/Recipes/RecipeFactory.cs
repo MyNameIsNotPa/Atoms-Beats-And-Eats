@@ -28,6 +28,8 @@ public class RecipeFactory
             return new TomatoesRecipe(startTime);
 		case "Milkshake":
 			return new MilkshakeRecipe(startTime);
+		case "Fries":
+			return new FriesRecipe(startTime);
         default:
 			return null;
 		}
