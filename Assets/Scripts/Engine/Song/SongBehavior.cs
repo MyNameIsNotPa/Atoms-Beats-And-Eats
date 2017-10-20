@@ -56,7 +56,7 @@ public class SongBehavior : MonoBehaviour
 
 		if (playing)
 		{
-			if (Engine.gamePaused)
+			if (engine.gamePaused)
 			{
 				player.pause ();
 			}

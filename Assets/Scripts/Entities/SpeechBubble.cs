@@ -13,6 +13,7 @@ public class SpeechBubble : MonoBehaviour
 	private Sprite failure;
 
 	private AudioSource audioSource;
+	private AudioSource recipeSounds;
 
 	private AudioClip successClip;
 	private AudioClip failClip;
@@ -23,6 +24,7 @@ public class SpeechBubble : MonoBehaviour
 		recipe = transform.Find("Image").GetComponent<SpriteRenderer> ();
 		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
+		recipeSounds = transform.Find("Recipes").GetComponent<AudioSource> ();
 
 		success = Resources.Load<Sprite> ("RecipeIcons/Success");
 		failure = Resources.Load<Sprite> ("RecipeIcons/Failure");
@@ -34,9 +36,12 @@ public class SpeechBubble : MonoBehaviour
 	// Play a sound when an order starts
 	public void playSound(AudioClip clip, double time)
 	{
-		audioSource.clip = clip;
-		audioSource.volume = 1f;
-		audioSource.PlayScheduled (time);
+		GameObject source = GameObject.Instantiate (recipeSounds.gameObject);
+		AudioSource src = source.GetComponent<AudioSource> ();
+		src.clip = clip;
+		src.volume = 1f;
+		src.PlayScheduled (time);
+		GameObject.Destroy (source, 0.5f);
 	}
 
 	// Show the speech bubble when an order starts

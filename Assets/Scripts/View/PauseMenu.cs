@@ -18,6 +18,10 @@ public class PauseMenu : MonoBehaviour
 	private Animator button2Animator;
 	private Animator button3Animator;
 
+	public LevelChanger levelChanger;
+
+	private Engine engine;
+
 	private int currSelected;
 
 	void Start ()
@@ -27,6 +31,8 @@ public class PauseMenu : MonoBehaviour
 		button1 = transform.Find ("Controls/Resume").gameObject;
 		button2 = transform.Find ("Controls/Restart").gameObject;
 		button3 = transform.Find ("Controls/Quit").gameObject;
+
+		engine = GameObject.FindGameObjectWithTag ("Engine").GetComponent<Engine> ();
 
 		button1.GetComponent<Button> ().onClick.AddListener(button1Click);
 		button2.GetComponent<Button> ().onClick.AddListener(button2Click);
@@ -39,7 +45,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Update ()
 	{
-		animator.SetBool ("IsPaused", Engine.gamePaused);
+		animator.SetBool ("IsPaused", engine.gamePaused);
 		button1Animator.SetInteger ("Selected", currSelected);
 		button2Animator.SetInteger ("Selected", currSelected);
 		button3Animator.SetInteger ("Selected", currSelected);
@@ -48,20 +54,19 @@ public class PauseMenu : MonoBehaviour
 	// Resume button was clicked
 	public void button1Click()
 	{
-		Engine.gamePaused = false;
+		engine.gamePaused = false;
 	}
 
 	// Restart button was clicked
 	public void button2Click()
 	{
-		Engine.gamePaused = false;
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		levelChanger.loadLevel (SceneManager.GetActiveScene().name);
 	}
 
 	// Quit button was clicked
 	public void button3Click()
 	{
-		
+		levelChanger.loadLevel ("LevelSelect");
 	}
 
 	public void button1Enter()

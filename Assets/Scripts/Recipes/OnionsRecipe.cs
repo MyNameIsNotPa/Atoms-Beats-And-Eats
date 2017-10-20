@@ -13,7 +13,10 @@ public class OnionsRecipe : Recipe
         events.Add (new SoundEvent(startSongTime + 0.5));
         events.Add (new SoundEvent(startSongTime + 1));
         events.Add (new HitEvent (startSongTime + 2));
+		events.Add (new SoundEvent(startSongTime + 2, Resources.Load<AudioClip>("Sounds/chop")));
         events.Add (new HitEvent (startSongTime + 2.5));
+		events.Add (new SoundEvent(startSongTime + 2.5, Resources.Load<AudioClip>("Sounds/chop")));
         events.Add (new HitEvent (startSongTime + 3));
+		events.Add (new SoundEvent(startSongTime + 3, Resources.Load<AudioClip>("Sounds/chop")));
     }
 }

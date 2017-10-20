@@ -19,12 +19,17 @@ public class HoldEvent : Event
 		this.result = HIT_RESULT.NONE;
 	}
 
-	public double getSongTime()
-	{
-		return hitSongTime;
-	}
+    public double getSongTime()
+    {
+        return hitSongTime;
+    }
 
-	public HIT_RESULT getResult()
+    public double getEndTime()
+    {
+        return endSongTime;
+    }
+
+    public HIT_RESULT getResult()
 	{
 		return result;
 	}

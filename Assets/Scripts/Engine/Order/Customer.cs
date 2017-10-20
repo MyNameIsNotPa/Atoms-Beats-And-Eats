@@ -22,15 +22,15 @@ public class Customer
 
 	public Customer(double startSongTime, double endSongTime)
 	{
-		prefab = Resources.Load<GameObject> ("Prefabs/Customer");
+		GameObject prefab = Resources.Load<GameObject> ("Prefabs/Customer" + Random.Range(1, 4));
 		customer = CustomerManager.addCustomer (prefab);
 		customer.transform.localPosition = startPos;
 		hasOrdered = false;
 		this.startSongTime = startSongTime;
 		this.endSongTime = endSongTime;
 		shownResult = false;
-		animator = customer.GetComponent<Animator> ();
-		renderer = customer.GetComponent<SpriteRenderer> ();
+		animator = customer.GetComponentInChildren<Animator> ();
+		renderer = customer.GetComponentInChildren<SpriteRenderer> ();
 	}
 
 	public void finishOrder(double currentBeat, ORDER_RESULT result)

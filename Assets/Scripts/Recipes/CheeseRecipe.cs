@@ -11,5 +11,6 @@ public class CheeseRecipe : Recipe
         image = Resources.Load<Sprite>("RecipeIcons/Cheese");
         events.Add(new SoundEvent(startSongTime));
         events.Add(new HitEvent(startSongTime + 2.5));
+		events.Add (new SoundEvent(startSongTime + 2.5, Resources.Load<AudioClip>("Sounds/chop")));
     }
 }

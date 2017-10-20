@@ -11,5 +11,6 @@ public class MustardRecipe : Recipe
         image = Resources.Load<Sprite>("RecipeIcons/Mustard");
         events.Add(new SoundEvent(startSongTime));
         events.Add(new HitEvent(startSongTime + 3));
+		events.Add (new SoundEvent(startSongTime + 3, Resources.Load<AudioClip>("Sounds/squeeze")));
     }
 }
