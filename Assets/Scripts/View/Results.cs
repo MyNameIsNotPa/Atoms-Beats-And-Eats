@@ -65,6 +65,8 @@ public class Results : MonoBehaviour {
 		{
 			transform.Find ("Main/TryAgain").gameObject.SetActive (true);
 		}
+		transform.Find ("Main/Continue").gameObject.SetActive (true);
+		GameObject.FindWithTag("Engine").GetComponent<Engine> ().levelEnded = true;
 	}
 
 	public void onSongEnd()
