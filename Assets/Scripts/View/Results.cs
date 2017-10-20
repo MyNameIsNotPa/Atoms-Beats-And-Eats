@@ -19,6 +19,8 @@ public class Results : MonoBehaviour {
 
 	private RectTransform fullBar;
 
+	private int score;
+
 	void Start () {
 		perfect = transform.Find ("Main/Scores/Hits/Perfect/Text").GetComponent<Text> ();
 		barely = transform.Find ("Main/Scores/Hits/Barely/Text").GetComponent<Text> ();
@@ -32,6 +34,7 @@ public class Results : MonoBehaviour {
 
 	private void displayScores(int orders, int perfects, int barelys, int misses, int score)
 	{
+		this.score = score;
 		customers.text = orders + "";
 		perfect.text = perfects + "";
 		barely.text = barelys + "";
@@ -50,6 +53,18 @@ public class Results : MonoBehaviour {
 		displayScores (orders, perfects, barelys, misses, score);
 		yield return new WaitForSeconds (3);
 		animator.SetTrigger ("ShowResults");
+	}
+
+	public void onResultsCallback()
+	{
+		if (score >= 70)
+		{
+			transform.Find ("Main/GoodJob").gameObject.SetActive (true);
+		}
+		else
+		{
+			transform.Find ("Main/TryAgain").gameObject.SetActive (true);
+		}
 	}
 
 	public void onSongEnd()
