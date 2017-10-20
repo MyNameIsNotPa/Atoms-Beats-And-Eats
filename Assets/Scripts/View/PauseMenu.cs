@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Start ()
 	{
-		currSelected = 0;
+		currSelected = 1;
 		animator = GetComponent<Animator> ();
 		button1 = transform.Find ("Controls/Resume").gameObject;
 		button2 = transform.Find ("Controls/Restart").gameObject;
@@ -49,6 +49,27 @@ public class PauseMenu : MonoBehaviour
 		button1Animator.SetInteger ("Selected", currSelected);
 		button2Animator.SetInteger ("Selected", currSelected);
 		button3Animator.SetInteger ("Selected", currSelected);
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			currSelected--;
+			if (currSelected == 0) {
+				currSelected = 3;
+			}
+		}
+		if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			currSelected++;
+			if (currSelected == 4) {
+				currSelected = 1;
+			}
+		}
+		if (Input.GetKeyDown (KeyCode.Return)) {
+			if (currSelected == 1) {
+				button1Click ();
+			} else if (currSelected == 2) {
+				button2Click ();
+			} else {
+				button3Click ();
+			}
+		}
 	}
 
 	// Resume button was clicked
