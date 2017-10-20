@@ -51,6 +51,13 @@ public class PracticeUI : MonoBehaviour
 		animator.SetTrigger ("StartPractice");
 	}
 
+	IEnumerator endLevel()
+	{
+		yield return new WaitForSeconds (4);
+		GameObject.FindGameObjectWithTag ("LevelChanger")
+			.GetComponent<LevelChanger> ().loadLevel ("LevelSelect");
+	}
+
 	public void onSongBegin()
 	{
 		StartCoroutine (showPracticeUI ());
@@ -60,6 +67,7 @@ public class PracticeUI : MonoBehaviour
 	{
 		transform.Find ("Header").gameObject.SetActive (false);
 		transform.Find ("BeatIndicator").gameObject.SetActive (false);
+		StartCoroutine (endLevel ());
 	}
 
 	public void onRecipeStart(Recipe recipe, Sprite s)
