@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Results : MonoBehaviour {
 
@@ -30,7 +31,7 @@ public class Results : MonoBehaviour {
 		fullBar = transform.Find ("Main/ScoreBar/FullBar").GetComponent<RectTransform> ();
 		scoreManager = GameObject.FindWithTag("ScoreManager").GetComponent<ScoreManager> ();
 		animator = GetComponent<Animator> ();
-	}
+    }
 
 	private void displayScores(int orders, int perfects, int barelys, int misses, int score)
 	{
@@ -41,7 +42,8 @@ public class Results : MonoBehaviour {
 		miss.text = misses + "";
 		scorePercent.text = score + "%";
 		fullBar.localScale = new Vector3 (score / 100f, 1, 1);
-	}
+        SaveData.setHighScore(SceneManager.GetActiveScene().name, score);
+    }
 
 	IEnumerator showResults()
 	{
@@ -50,7 +52,7 @@ public class Results : MonoBehaviour {
 		int barelys = scoreManager.getTotalBarelys ();
 		int misses = scoreManager.getTotalMisses ();
 		int score = scoreManager.getScorePercentage ();
-		displayScores (orders, perfects, barelys, misses, score);
+        displayScores (orders, perfects, barelys, misses, score);
 		yield return new WaitForSeconds (3);
 		animator.SetTrigger ("ShowResults");
 	}
