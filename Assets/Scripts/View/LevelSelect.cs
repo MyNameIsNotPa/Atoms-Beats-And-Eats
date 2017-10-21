@@ -25,6 +25,7 @@ public class LevelSelect : MonoBehaviour
 
 	void Start ()
 	{
+		Cursor.visible = true;
 		anim = GetComponent<Animator> ();
 		levelName = transform.Find("Info/LevelName").GetComponent<Text>();
 		levelDesc = transform.Find("Info/LevelDesc").GetComponent<Text>();
