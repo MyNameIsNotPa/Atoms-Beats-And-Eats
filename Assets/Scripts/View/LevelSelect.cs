@@ -21,11 +21,16 @@ public class LevelSelect : MonoBehaviour
 
 	public LevelChanger levelChanger;
 
+	public Animator musicFader;
+
 	private Animator anim;
+
+	private AudioSource source;
 
 	void Start ()
 	{
 		Cursor.visible = true;
+		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		levelName = transform.Find("Info/LevelName").GetComponent<Text>();
 		levelDesc = transform.Find("Info/LevelDesc").GetComponent<Text>();
@@ -45,13 +50,21 @@ public class LevelSelect : MonoBehaviour
 		}
 	}
 
+	void Update()
+	{
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+	}
+
 	public void startPractice()
 	{
+		musicFader.SetTrigger ("FadeOut");
 		levelChanger.loadPractice(practices[currentLevel]);
 	}
 
 	public void startPlay()
 	{
+		musicFader.SetTrigger ("FadeOut");
 		levelChanger.loadLevel(levels [currentLevel]);
 	}
 
@@ -78,6 +91,7 @@ public class LevelSelect : MonoBehaviour
 		{
 			currentLevel--;
 			anim.SetTrigger ("Switch");
+			source.Play ();
 		}
 	}
 
@@ -87,6 +101,7 @@ public class LevelSelect : MonoBehaviour
 		{
 			currentLevel++;
 			anim.SetTrigger ("Switch");
+			source.Play ();
 		}
 	}
 }

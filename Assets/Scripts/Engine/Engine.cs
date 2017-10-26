@@ -71,7 +71,7 @@ public class Engine : MonoBehaviour
 
 	public void Update ()
 	{
-		if (isPauseKeyDown ())
+		if (isPauseKeyDown () && (player.isPlaying() || gamePaused))
 		{
 			gamePaused = !gamePaused;
 		}
