@@ -68,6 +68,12 @@ public class LevelSelect : MonoBehaviour
 		levelChanger.loadLevel(levels [currentLevel]);
 	}
 
+	public void mainMenu()
+	{
+		musicFader.SetTrigger ("FadeOut");
+		levelChanger.loadLevel("MainMenu");
+	}
+
 	public void changeTicket()
 	{
 		levelName.text = levels [currentLevel];

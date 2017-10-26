@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 92019515962403458}
   - component: {fileID: 124427636663636446}
   - component: {fileID: 81449365092611262}
+  - component: {fileID: 114821802980223824}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3941,6 +3942,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Practice Finished!
+--- !u!114 &114821802980223824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172578648563432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301eca71255100647bb9bad1d5641921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 3d417cf48fde7da46b5a79811115e87f, type: 3}
 --- !u!114 &114824834417591046
 MonoBehaviour:
   m_ObjectHideFlags: 1
