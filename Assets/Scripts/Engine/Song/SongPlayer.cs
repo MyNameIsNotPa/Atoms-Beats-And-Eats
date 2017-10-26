@@ -46,7 +46,7 @@ public class SongPlayer
 
 	public bool isPlaying()
 	{
-		return source.isPlaying;
+		return source.isPlaying && getSongTime() > 0;
 	}
 
 	public Song getSong()

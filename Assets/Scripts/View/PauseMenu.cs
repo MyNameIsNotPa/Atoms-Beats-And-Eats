@@ -24,6 +24,8 @@ public class PauseMenu : MonoBehaviour
 
 	private int currSelected;
 
+	private AudioSource source;
+
 	void Start ()
 	{
 		currSelected = 1;
@@ -31,6 +33,7 @@ public class PauseMenu : MonoBehaviour
 		button1 = transform.Find ("Controls/Resume").gameObject;
 		button2 = transform.Find ("Controls/Restart").gameObject;
 		button3 = transform.Find ("Controls/Quit").gameObject;
+		source = button1.GetComponent<AudioSource> ();
 
 		engine = GameObject.FindGameObjectWithTag ("Engine").GetComponent<Engine> ();
 
@@ -50,18 +53,21 @@ public class PauseMenu : MonoBehaviour
 		button2Animator.SetInteger ("Selected", currSelected);
 		button3Animator.SetInteger ("Selected", currSelected);
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			source.Play ();
 			currSelected--;
 			if (currSelected == 0) {
 				currSelected = 3;
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			source.Play ();
 			currSelected++;
 			if (currSelected == 4) {
 				currSelected = 1;
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.Return)) {
+			source.Play ();
 			if (currSelected == 1) {
 				button1Click ();
 			} else if (currSelected == 2) {
