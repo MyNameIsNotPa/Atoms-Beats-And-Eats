@@ -10,6 +10,7 @@ public class PracticeUI : MonoBehaviour
     private GameObject dot;
     private GameObject downArrow;
     private GameObject upArrow;
+	private GameObject bar;
     private float lastTime;
 
 	private Text headerText;
@@ -35,6 +36,7 @@ public class PracticeUI : MonoBehaviour
 		headerText = transform.Find ("Header/Text").GetComponent<Text> ();
 		slider = GetComponentInChildren<Slider> ();
         dot = Resources.Load<GameObject>("Prefabs/Dot");
+		bar = Resources.Load<GameObject> ("Prefabs/Bar");
         downArrow = Resources.Load<GameObject>("Prefabs/DownArrow");
         upArrow = Resources.Load<GameObject>("Prefabs/UpArrow");
         preview = transform.Find ("Header/Preview").GetComponent<Image> ();
@@ -76,28 +78,38 @@ public class PracticeUI : MonoBehaviour
 		hitTimes.Clear ();
 		sprites.Clear ();
         hitTypes = recipe.getHitTypes();
-        int hitTypesNum = 0;
-		foreach (double hit in recipe.getHitTimes())
+
+		List<double> recipeHitTimes = recipe.getHitTimes ();
+		for (int i = 0; i < recipeHitTimes.Count; i++)
 		{
+			double hit = recipeHitTimes[i];
 			hitTimes.Add (hit);
 			float offset = ((float)hit) - start;
 			float num = -475f + (offset * 475) / 4f;
             GameObject newdot;
-            if (hitTypes[hitTypesNum] == "hit")
+			if (hitTypes[i] == "hit")
             {
                 newdot = GameObject.Instantiate(dot, dots);
             }
-            else if (hitTypes[hitTypesNum] == "holdStart")
+			else if (hitTypes[i] == "holdStart")
             {
-                newdot = GameObject.Instantiate(downArrow, dots);
+				GameObject newbar = GameObject.Instantiate (bar, dots);
+				float offset2 = ((float)recipeHitTimes[i + 1]) - start;
+				float num2 = -475f + (offset2 * 475) / 4f;
+				float dist = offset2 - offset;
+				float average = dist / 2.0f;
+				float midpos = -475f + ((offset + average) * 475) / 4f;
+				float scaledDist = dist;
+				newbar.GetComponent<RectTransform>().localPosition = new Vector3(average, 0, 0);
+				newbar.GetComponent<RectTransform> ().localScale = new Vector3 (scaledDist, 1, 1);
+				newdot = GameObject.Instantiate(downArrow, dots);
             }
-            else
+			else// if (hitTypes[hitTypesNum] == "holdEnd")
             {
                 newdot = GameObject.Instantiate(upArrow, dots);
             }
             newdot.GetComponent<RectTransform>().localPosition = new Vector3(num, 0, 0);
             sprites.Add(newdot.GetComponent<Image>());
-            hitTypesNum++;
 		}
 	}
 
