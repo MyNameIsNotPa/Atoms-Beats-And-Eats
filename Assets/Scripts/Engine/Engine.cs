@@ -63,19 +63,27 @@ public class Engine : MonoBehaviour
 
     private static bool keyDisabled;
 
+	public bool levelEnded = false;
+
 	// Game pausing
 	//============================================================================================
 	public bool gamePaused = false;
 
 	public void Update ()
 	{
-		if (isPauseKeyDown ())
+		if (isPauseKeyDown () && (player.isPlaying() || gamePaused))
 		{
 			gamePaused = !gamePaused;
 		}
 		// Lock and hide mouse cursor if the game is running
 		Cursor.visible = gamePaused;
 		Cursor.lockState = gamePaused ? CursorLockMode.None : CursorLockMode.Locked;
+
+		if (levelEnded && Input.anyKey)
+		{
+			GameObject.FindGameObjectWithTag ("LevelChanger")
+				.GetComponent<LevelChanger> ().loadLevel ("LevelSelect");
+		}
 	}
 
 

@@ -108,6 +108,63 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &135233451
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114918763819956034, guid: 1be8e24ad2b0b5b478a76467691909aa,
+        type: 2}
+      propertyPath: orderEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 275011720}
+    - target: {fileID: 114918763819956034, guid: 1be8e24ad2b0b5b478a76467691909aa,
+        type: 2}
+      propertyPath: beatUpdate.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 275011720}
+    - target: {fileID: 224728138734389424, guid: 1be8e24ad2b0b5b478a76467691909aa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &275011716
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,9 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a15519bc9f13f741882b5703c4d1b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipes: 'Milkshake
-
-    Fries'
+  recipes: Milkshake
   newRecipe:
     m_PersistentCalls:
       m_Calls:
@@ -338,62 +393,5 @@ Transform:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114933359575129752, guid: 1be8e24ad2b0b5b478a76467691909aa,
     type: 2}
-  m_PrefabInternal: {fileID: 2107438697}
+  m_PrefabInternal: {fileID: 135233451}
   m_Script: {fileID: 11500000, guid: 20b2eeca17f504f4abc099d983051373, type: 3}
---- !u!1001 &2107438697
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647072075356920, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114918763819956034, guid: 1be8e24ad2b0b5b478a76467691909aa,
-        type: 2}
-      propertyPath: orderEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 275011720}
-    - target: {fileID: 114918763819956034, guid: 1be8e24ad2b0b5b478a76467691909aa,
-        type: 2}
-      propertyPath: beatUpdate.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 275011720}
-    - target: {fileID: 224728138734389424, guid: 1be8e24ad2b0b5b478a76467691909aa,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1be8e24ad2b0b5b478a76467691909aa, type: 2}
-  m_IsPrefabParent: 0
