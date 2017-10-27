@@ -11,6 +11,10 @@ public class LevelSelect : MonoBehaviour
 	public List<string> practices;
 
 	public int currentLevel;
+	private int selectedElement;
+
+	private bool left;
+	private bool right;
 
 	private Text levelName;
 	private Text levelDesc;
@@ -29,6 +33,9 @@ public class LevelSelect : MonoBehaviour
 
 	void Start ()
 	{
+		selectedElement = 0;
+		left = true;
+		right = true;
 		Cursor.visible = true;
 		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
@@ -43,10 +50,12 @@ public class LevelSelect : MonoBehaviour
 		if (currentLevel == 0)
 		{
 			leftButton.gameObject.SetActive (false);
+			left = false;
 		}
 		if (currentLevel == levels.Count - 1 || currentLevel == PlayerPrefs.GetInt("Number of Levels Unlocked") - 1)
 		{
 			rightButton.gameObject.SetActive (false);
+			right = false;
 		}
 	}
 
@@ -54,6 +63,32 @@ public class LevelSelect : MonoBehaviour
 	{
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+		anim.SetInteger("Selected", selectedElement);
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			selectedElement--;
+			if (selectedElement == -1) {
+				selectedElement = 1;
+			}
+		} if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			selectedElement++;
+			if (selectedElement == 2) {
+				selectedElement = 0;
+			}
+		} if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			if (left) {
+				scrollLeft ();
+			}
+		} if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			if (right) {
+				scrollRight ();
+			}
+		} if (Input.GetKeyDown (KeyCode.Return)) {
+			if (selectedElement == 0) {
+				startPractice ();
+			} else {
+				startPlay ();
+			}
+		}
 	}
 
 	public void startPractice()
