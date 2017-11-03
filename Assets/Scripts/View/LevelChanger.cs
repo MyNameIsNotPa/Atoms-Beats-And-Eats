@@ -14,6 +14,13 @@ public class LevelChanger : MonoBehaviour
 		SceneManager.LoadScene (name);
 	}
 
+	IEnumerator endGame()
+	{
+		anim.SetTrigger ("FadeOut");
+		yield return new WaitForSeconds (1);
+		Application.Quit ();
+	}
+
 	private void fadeOut()
 	{
 		anim.SetTrigger ("FadeOut");
@@ -31,6 +38,11 @@ public class LevelChanger : MonoBehaviour
 		DontDestroyOnLoad (practice);
 		practice.GetComponent<PracticeRecipes> ().setRecipes (recipes);
 		loadLevel ("Practice");
+	}
+
+	public void quitGame()
+	{
+		StartCoroutine (endGame ());
 	}
 
 	void Start ()
