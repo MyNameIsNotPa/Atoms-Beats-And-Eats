@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class MainMenu : MonoBehaviour
 	private int beat;
 	private int currentButton;
 
+	private EventSystem events;
+
 	public GameObject credits;
 	public GameObject help;
 	private Canvas main;
@@ -24,6 +27,7 @@ public class MainMenu : MonoBehaviour
 
 	void Start ()
 	{
+		events = GameObject.FindObjectOfType<EventSystem> ();
 		menu = GetComponent<Animator> ();
 		song = transform.Find("UIMain").GetComponent<AudioSource> ();
 		delay = bpm / 60f;
@@ -43,7 +47,7 @@ public class MainMenu : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.anyKeyDown && !menu.GetBool ("InMenu"))
+		if (Input.anyKeyDown && !menu.GetBool ("InMenu") && !slide.isPlaying)
 		{
 			slide.Play ();
 			toMenu ();
@@ -84,6 +88,7 @@ public class MainMenu : MonoBehaviour
 	{
 		slide.Play ();
 		menu.SetBool ("InMenu", false);
+		events.SetSelectedGameObject (null);
 	}
 
 	public void toMenu()
@@ -93,17 +98,20 @@ public class MainMenu : MonoBehaviour
 		menu.SetBool ("InMenu", true);
 		help.SetActive (false);
 		credits.SetActive (false);
+		events.SetSelectedGameObject (buttons [0].gameObject);
 	}
 
 	public void openCredits()
 	{
 		main.enabled = false;
 		credits.SetActive (true);
+		events.SetSelectedGameObject (credits.transform.Find("BackArrow").gameObject);
 	}
 
 	public void openHelp()
 	{
 		main.enabled = false;
 		help.SetActive (true);
+		events.SetSelectedGameObject (help.transform.Find("BackArrow").gameObject);
 	}
 }

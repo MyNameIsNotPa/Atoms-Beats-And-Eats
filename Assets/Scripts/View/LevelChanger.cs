@@ -28,6 +28,10 @@ public class LevelChanger : MonoBehaviour
 
 	public void loadLevel(string name)
 	{
+		if (name.Equals("LevelSelect") && SceneManager.GetActiveScene().name.Equals("MainMenu"))
+		{
+			SelectedLevel.selectedLevel = 0;
+		}
 		StartCoroutine (loadScene (name));
 	}
 

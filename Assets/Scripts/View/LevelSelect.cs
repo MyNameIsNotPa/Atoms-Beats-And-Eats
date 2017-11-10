@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class LevelSelect : MonoBehaviour
 	public List<string> descriptions;
 	public List<string> practices;
 
-	public int currentLevel;
+	private int currentLevel;
 
 	private Text levelName;
 	private Text levelDesc;
@@ -27,27 +28,23 @@ public class LevelSelect : MonoBehaviour
 
 	private AudioSource source;
 
+	private EventSystem events;
+
 	void Start ()
 	{
+		currentLevel = SelectedLevel.selectedLevel;
+		events = GameObject.FindObjectOfType<EventSystem> ();
 		Cursor.visible = true;
 		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		levelName = transform.Find("Info/LevelName").GetComponent<Text>();
 		levelDesc = transform.Find("Info/LevelDesc").GetComponent<Text>();
 		highScore = transform.Find("Info/HighScore").GetComponent<Text>();
-        highScore.text = SaveData.getHighScore(levels[currentLevel]).ToString() + "/100";
         if (PlayerPrefs.GetInt("Number of Levels Unlocked") == 0)
         {
             PlayerPrefs.SetInt("Number of Levels Unlocked", 1);
         }
-		if (currentLevel == 0)
-		{
-			leftButton.gameObject.SetActive (false);
-		}
-		if (currentLevel == levels.Count - 1 || currentLevel == PlayerPrefs.GetInt("Number of Levels Unlocked") - 1)
-		{
-			rightButton.gameObject.SetActive (false);
-		}
+		changeTicket ();
 	}
 
 	void Update()
@@ -81,14 +78,6 @@ public class LevelSelect : MonoBehaviour
         highScore.text = SaveData.getHighScore(levels[currentLevel]).ToString() + "/100";
         leftButton.gameObject.SetActive (true);
 		rightButton.gameObject.SetActive (true);
-		if (currentLevel == 0)
-		{
-			leftButton.gameObject.SetActive (false);
-		}
-		if (currentLevel == levels.Count - 1 || currentLevel == PlayerPrefs.GetInt("Number of Levels Unlocked") - 1)
-		{
-			rightButton.gameObject.SetActive (false);
-		}
 	}
 
 	public void scrollLeft()
@@ -99,15 +88,29 @@ public class LevelSelect : MonoBehaviour
 			anim.SetTrigger ("Switch");
 			source.Play ();
 		}
+		else
+		{
+			currentLevel = PlayerPrefs.GetInt("Number of Levels Unlocked") - 1;
+			anim.SetTrigger ("Switch");
+			source.Play ();
+		}
+		SelectedLevel.selectedLevel = currentLevel;
 	}
 
 	public void scrollRight()
 	{
-		if (currentLevel < levels.Count - 1)
+		if (currentLevel < PlayerPrefs.GetInt ("Number of Levels Unlocked") - 1)
 		{
 			currentLevel++;
 			anim.SetTrigger ("Switch");
 			source.Play ();
 		}
+		else
+		{
+			currentLevel = 0;
+			anim.SetTrigger ("Switch");
+			source.Play ();
+		}
+		SelectedLevel.selectedLevel = currentLevel;
 	}
 }

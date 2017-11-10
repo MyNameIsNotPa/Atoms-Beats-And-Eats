@@ -98,18 +98,18 @@ public class Engine : MonoBehaviour
         else
         {
             keyDisabled = true;
-            return Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+			return Input.GetButtonDown("Hit") || Input.GetMouseButtonDown(0);
         }
 	}
 		
 	public bool getKeyHeld()
 	{
-		return Input.GetKey (KeyCode.Space) || Input.GetMouseButton (0);
+		return Input.GetMouseButton (0) || Input.GetButton("Hit");
 	}
 
 	public bool isPauseKeyDown()
 	{
-		return Input.GetKeyDown (KeyCode.Escape);
+		return Input.GetButtonDown ("Pause");
 	}
 		
 	// Event invokers

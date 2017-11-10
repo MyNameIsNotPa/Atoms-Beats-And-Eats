@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: d1ffd52839dcb2d4084c77a2ab0fc20b
+  - enabled: 1
+    path: Assets/Scenes/Levels/Thursday.unity
+    guid: 704c8d53c827d9f45884049c76ec2c61

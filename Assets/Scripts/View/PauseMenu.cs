@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
+	private EventSystem events;
 
 	private Animator animator;
 
@@ -26,8 +28,12 @@ public class PauseMenu : MonoBehaviour
 
 	private AudioSource source;
 
+	private bool wasPaused;
+
 	void Start ()
 	{
+		wasPaused = false;
+		events = GameObject.FindObjectOfType<EventSystem> ();
 		currSelected = 1;
 		animator = GetComponent<Animator> ();
 		button1 = transform.Find ("Controls/Resume").gameObject;
@@ -48,34 +54,19 @@ public class PauseMenu : MonoBehaviour
 
 	void Update ()
 	{
+		if (engine.gamePaused && !wasPaused)
+		{
+			events.SetSelectedGameObject (button1);
+		}
+		else if (!engine.gamePaused && wasPaused)
+		{
+			events.SetSelectedGameObject (null);
+		}
+		wasPaused = engine.gamePaused;
 		animator.SetBool ("IsPaused", engine.gamePaused);
 		button1Animator.SetInteger ("Selected", currSelected);
 		button2Animator.SetInteger ("Selected", currSelected);
 		button3Animator.SetInteger ("Selected", currSelected);
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			source.Play ();
-			currSelected--;
-			if (currSelected == 0) {
-				currSelected = 3;
-			}
-		}
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			source.Play ();
-			currSelected++;
-			if (currSelected == 4) {
-				currSelected = 1;
-			}
-		}
-		if (Input.GetKeyDown (KeyCode.Return)) {
-			source.Play ();
-			if (currSelected == 1) {
-				button1Click ();
-			} else if (currSelected == 2) {
-				button2Click ();
-			} else {
-				button3Click ();
-			}
-		}
 	}
 
 	// Resume button was clicked

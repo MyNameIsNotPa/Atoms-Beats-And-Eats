@@ -20,9 +20,17 @@ public class Customer
 
 	private SpriteRenderer renderer;
 
-	public Customer(double startSongTime, double endSongTime)
+	public Customer(double startSongTime, double endSongTime, Recipe first)
 	{
-		GameObject prefab = Resources.Load<GameObject> ("Prefabs/Customer" + Random.Range(1, 4));
+		int toLoad = 0;
+		if (first.GetType () == typeof(SingleRecipe)) {
+			toLoad = 2;
+		} else if (first.GetType () == typeof(DoubleRecipe)) {
+			toLoad = 3;
+		} else {
+			toLoad = 1;
+		}
+		GameObject prefab = Resources.Load<GameObject> ("Prefabs/Customer" + toLoad);
 		customer = CustomerManager.addCustomer (prefab);
 		customer.transform.localPosition = startPos;
 		hasOrdered = false;

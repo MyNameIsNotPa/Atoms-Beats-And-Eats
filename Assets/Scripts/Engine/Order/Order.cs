@@ -64,7 +64,7 @@ public class Order
 	public void start(Engine engine)
 	{
 		started = true;
-		customer = new Customer (startSongTime - 4f, startSongTime);
+		customer = new Customer (startSongTime - 4f, startSongTime, recipes[0]);
 	}
 
 	public void finish(Engine engine)
