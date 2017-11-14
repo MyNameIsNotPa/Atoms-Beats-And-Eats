@@ -24,9 +24,15 @@ public class SongPlayer
 
 	public void start(double startBeat)
 	{
-		source.time = (float) startBeat;
-		source.PlayScheduled (AudioSettings.dspTime + 7f);
-		startTime = AudioSettings.dspTime;
+		if (startBeat == 0) {
+			source.time = (float)startBeat;
+			source.PlayScheduled (AudioSettings.dspTime + 7f);
+			startTime = AudioSettings.dspTime;
+		} else {
+			source.time = (float)startBeat;
+			source.PlayScheduled (AudioSettings.dspTime + 0f);
+			startTime = AudioSettings.dspTime;
+		}
 	}
 
 	public void stop()

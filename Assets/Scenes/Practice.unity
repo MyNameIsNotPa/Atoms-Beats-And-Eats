@@ -633,9 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a15519bc9f13f741882b5703c4d1b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipes: 'Cheese
-
-    Cheese'
+  recipes: Fries
   newRecipe:
     m_PersistentCalls:
       m_Calls:

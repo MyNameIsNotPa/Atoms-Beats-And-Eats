@@ -38,7 +38,9 @@ public class SongBehavior : MonoBehaviour
 		engine = GameObject.FindWithTag("Engine").GetComponent<Engine> ();
 		engine.songEnd.AddListener (onSongEnd);
 		engine.setPlayer (player);
-		engine.startGame ();
+		if (startBeat == 0) {
+			engine.startGame ();
+		}
 	}
 
 	public void onSongEnd()

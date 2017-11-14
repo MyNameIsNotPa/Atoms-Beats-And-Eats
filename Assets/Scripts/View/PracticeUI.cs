@@ -100,7 +100,7 @@ public class PracticeUI : MonoBehaviour
 				float average = dist / 2.0f;
 				float midpos = -475f + ((offset + average) * 475) / 4f;
 				float scaledDist = dist;
-				newbar.GetComponent<RectTransform>().localPosition = new Vector3(average, 0, 0);
+				newbar.GetComponent<RectTransform>().localPosition = new Vector3(dist == 1 ? -170 : 0, 0, 0);
 				newbar.GetComponent<RectTransform> ().localScale = new Vector3 (scaledDist, 1, 1);
 				newdot = GameObject.Instantiate(downArrow, dots);
             }

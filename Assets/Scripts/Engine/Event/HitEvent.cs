@@ -35,7 +35,7 @@ public class HitEvent : Event
 
 	// Update this hit event each song tick
 	override public void update(Engine engine)
-    { 
+    {
         // If no input was received in time, the player missed this event.
         if (engine.getSecondTime() - engine.toSecondTime(hitSongTime) > Leniency.BARELY_TIME)
         {
@@ -50,7 +50,7 @@ public class HitEvent : Event
             if (engine.isKeyDown())
             {
                 double interval = engine.getSecondTime() - engine.toSecondTime(hitSongTime);
-                //Debug.Log (interval > 0 ? "Increase offset." : "Decrease offset.");
+                Debug.Log (interval > 0 ? "Increase offset." : "Decrease offset.");
 
                 // If the button was clicked close enough to the event:
                 interval = UnityEngine.Mathf.Abs((float)interval);
