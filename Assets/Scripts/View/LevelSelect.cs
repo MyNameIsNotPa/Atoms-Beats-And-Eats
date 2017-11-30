@@ -30,11 +30,17 @@ public class LevelSelect : MonoBehaviour
 
 	private EventSystem events;
 
+	private Vector3 oldPos;
+
+	private GraphicRaycaster buttonCanvas;
+
 	void Start ()
 	{
+		buttonCanvas = transform.Find ("Controls").GetComponent<GraphicRaycaster> ();
+		buttonCanvas.enabled = false;
 		currentLevel = SelectedLevel.selectedLevel;
 		events = GameObject.FindObjectOfType<EventSystem> ();
-		Cursor.visible = true;
+		Cursor.visible = Input.GetJoystickNames().Length == 0;
 		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		levelName = transform.Find("Info/LevelName").GetComponent<Text>();
@@ -44,13 +50,27 @@ public class LevelSelect : MonoBehaviour
         {
             PlayerPrefs.SetInt("Number of Levels Unlocked", 1);
         }
+		if (PlayerPrefs.GetInt ("Number of Levels Unlocked") == 1)
+		{
+			leftButton.interactable = false;
+			rightButton.interactable = false;
+		}
+		else
+		{
+			leftButton.interactable = true;
+			rightButton.interactable = true;
+		}
 		changeTicket ();
+		oldPos = Input.mousePosition;
 	}
 
 	void Update()
 	{
-		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+		if (Input.mousePosition != oldPos) {
+			Cursor.visible = true;
+			buttonCanvas.enabled = true;
+		}
 	}
 
 	public void startPractice()
@@ -78,10 +98,15 @@ public class LevelSelect : MonoBehaviour
         highScore.text = SaveData.getHighScore(levels[currentLevel]).ToString() + "/100";
         leftButton.gameObject.SetActive (true);
 		rightButton.gameObject.SetActive (true);
+		anim.ResetTrigger ("Switch");
 	}
 
 	public void scrollLeft()
 	{
+		if (PlayerPrefs.GetInt ("Number of Levels Unlocked") == 1)
+		{
+			return;
+		}
 		if (currentLevel > 0)
 		{
 			currentLevel--;
@@ -99,6 +124,10 @@ public class LevelSelect : MonoBehaviour
 
 	public void scrollRight()
 	{
+		if (PlayerPrefs.GetInt ("Number of Levels Unlocked") == 1)
+		{
+			return;
+		}
 		if (currentLevel < PlayerPrefs.GetInt ("Number of Levels Unlocked") - 1)
 		{
 			currentLevel++;

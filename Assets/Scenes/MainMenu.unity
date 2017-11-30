@@ -1904,7 +1904,7 @@ Prefab:
     - target: {fileID: 224909320213218526, guid: 415759e0fc5b41a408f190d3b6564619,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224909320213218526, guid: 415759e0fc5b41a408f190d3b6564619,
         type: 2}
@@ -2323,7 +2323,7 @@ Transform:
   - {fileID: 412861164}
   - {fileID: 320343564}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &514015455
 Animator:
@@ -4616,7 +4616,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1384879948}
+  - component: {fileID: 1384879947}
   - component: {fileID: 1384879942}
   - component: {fileID: 1384879945}
   - component: {fileID: 1384879944}
@@ -4702,24 +4702,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 3d417cf48fde7da46b5a79811115e87f, type: 3}
---- !u!224 &1384879948
-RectTransform:
+--- !u!4 &1384879947
+Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1384879941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.37000275, y: 0.33000183, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.37000275, y: 0.33000183}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1399746005
 GameObject:
   m_ObjectHideFlags: 0

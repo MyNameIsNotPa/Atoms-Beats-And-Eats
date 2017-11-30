@@ -25,8 +25,15 @@ public class MainMenu : MonoBehaviour
 
 	private AudioSource slide;
 
+	private Vector3 oldPos;
+
+	private GraphicRaycaster buttonCanvas;
+
 	void Start ()
 	{
+		buttonCanvas = transform.Find ("UIMain/Buttons").GetComponent<GraphicRaycaster> ();
+		buttonCanvas.enabled = false;
+		Cursor.visible = Input.GetJoystickNames().Length == 0;
 		events = GameObject.FindObjectOfType<EventSystem> ();
 		menu = GetComponent<Animator> ();
 		song = transform.Find("UIMain").GetComponent<AudioSource> ();
@@ -43,10 +50,18 @@ public class MainMenu : MonoBehaviour
 		menu.SetBool ("InMenu", false);
 		song.Play ();
 		buttonEntered (0);
+
+		oldPos = Input.mousePosition;
 	}
 
 	void Update ()
 	{
+		Cursor.lockState = CursorLockMode.None;
+		if (Input.mousePosition != oldPos) {
+			Cursor.visible = true;
+			buttonCanvas.enabled = true;
+		}
+
 		if (Input.anyKeyDown && !menu.GetBool ("InMenu") && !slide.isPlaying)
 		{
 			slide.Play ();

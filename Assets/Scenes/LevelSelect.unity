@@ -856,18 +856,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1577215970030866, guid: 415759e0fc5b41a408f190d3b6564619, type: 2}
-      propertyPath: m_Name
-      value: LevelChanger
-      objectReference: {fileID: 0}
     - target: {fileID: 223659104881100060, guid: 415759e0fc5b41a408f190d3b6564619,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1384879942}
-    - target: {fileID: 1276504208283876, guid: 415759e0fc5b41a408f190d3b6564619, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1577215970030866, guid: 415759e0fc5b41a408f190d3b6564619, type: 2}
+      propertyPath: m_Name
+      value: LevelChanger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 415759e0fc5b41a408f190d3b6564619, type: 2}
@@ -1470,6 +1466,17 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1137412698}
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 772723636}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2132,6 +2139,17 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1137412698}
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1049646894}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3064,7 +3082,6 @@ MonoBehaviour:
   - Lettuce, Cheese
   - Onions, Pickles
   - Milkshake, Fries
-  currentLevel: 0
   leftButton: {fileID: 292284712}
   rightButton: {fileID: 1243539459}
   levelChanger: {fileID: 786798286}
