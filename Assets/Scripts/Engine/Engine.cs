@@ -62,12 +62,18 @@ public class Engine : MonoBehaviour
 	public PlaySoundEvent soundPlay;
 
     private static bool keyDisabled;
+	private AudioClip failClip;
 
 	public bool levelEnded = false;
 
 	// Game pausing
 	//============================================================================================
 	public bool gamePaused = false;
+
+	public void Start ()
+	{
+		failClip = Resources.Load<AudioClip> ("Sounds/Fail");
+	}
 
 	public void Update ()
 	{
@@ -162,7 +168,11 @@ public class Engine : MonoBehaviour
 
 	public void playSound(AudioClip clip, double time)
 	{
-		soundPlay.Invoke (clip, time);
+		if (clip == null) {
+			GetComponent<AudioSource> ().Play ();
+		} else {
+			soundPlay.Invoke (clip, time);
+		}
 	}
 
 	// Getters and setters (Used internally by the engine. Don't use.)

@@ -63,6 +63,7 @@ public class HitEvent : Event
                 else
                 {
                     timeDisabled = 0;
+					engine.playSound (null, 0);
                     return;
                 }
 
